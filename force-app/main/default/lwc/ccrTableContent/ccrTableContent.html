@@ -40,7 +40,8 @@
                  <div class="slds-grid slds-no-flex">
                      &nbsp;&nbsp;
                      <div class="slds-size_1-of-2"> 
-                         <b>Image</b>: <img 
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                           <img 
                                   src={tab.Table_Image_Link__c}
                                   alt=" " 
                                   height="60px" 
@@ -49,17 +50,14 @@
                      </div>
                      <div class="slds-size_1-of-2">
                          <b>Capacity : {tab.CCXR_Capacity__c}</b><br/>
-                         <b>Book Time</b>  : {tab.CCXR_Booked_Time__c}<br/> 
-                         <b>Description</b>  : {tab.CCXR_Restaurant_Employee__c}<br/>
+                         <b>Employee Name</b>  : {tab.CCXR_Restaurant_Employee__c}<br/>
                        
                      </div>  
              
                  </div>
                  <p slot="footer">
                      <b>
-                        Status : <lightning-icon icon-name="utility:moneybag"
-                              alternative-text="Event"
-                             size="xx-small"></lightning-icon>{tab.CCXR_Table_Status__c}
+                        Status : &nbsp;&nbsp; {tab.CCXR_Table_Status__c}
                      </b>
                  
          </p>  

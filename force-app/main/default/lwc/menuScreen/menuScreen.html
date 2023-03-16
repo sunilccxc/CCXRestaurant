@@ -1,41 +1,44 @@
 <template>
-    <!--<div class="slds-box slds-theme_shade slds-theme_alert-texture">
-    <div class="backgroundImg" style={getBackgroundImage} >-->
-<lightning-tabset class="slds-tabs_default slds-tabs_medium">
+    <div class="slds-box slds-theme_shade slds-theme_alert-texture">
+            <div class="slds-grid slds-form__row">
+                <lightning-input name="textield" class="slds-col" type="text" label="Customer ID : " value="C-0001" readonly>
+                </lightning-input>
+                <lightning-input name="textield" class="slds-col" type="text" label="Table ID: " value="T-04" readonly>
+                </lightning-input>
+                <lightning-button variant="brand" label="Generate Bill" onclick={generateBill} style="font-size: 20px;"></lightning-button>
+            </div><br>
+            <h1 style="font-size: 30px;
+            text-align: center;">Menu Screen</h1>
+<lightning-tabset class="slds-tabs_default slds-tabs_large">
 
-    <lightning-tab label="Vegetarian" icon-name="custom:custom51"
+    <lightning-tab label="Vegetarian" icon-name="standard:customer"
     alternative-text="Event"
-    size="xx-small">
+    size="xx-small"  >
 
-        <lightning-tabset variant="vertical" >
+        <lightning-tabset variant="vertical">
             <!--1..1. Starters-->
-            <lightning-tab label="Starters" >
-                <template if:true={starters}>
+            <lightning-tab label="Starters">
+                <template if:true={contacts}>
                     <div class="slds-grid slds-wrap" style="color: aqua;">
-                        <template for:each={starters} for:item="starter">
-                            <div key={starter.Id} class="slds-col
+                        <template for:each={contacts} for:item="contact">
+                            <div key={contact.Id} class="slds-col
                                 slds-size_1-of-2 slds-p-around_medium">
                                 <lightning-card class="image"
-                                    title={starter.CCXR_Item_Name__c} style="color: black;">
-
+                                    title={contact.CCXR_Item_Name__c} style="color: black;">
                                     <lightning-button variant="brand"
-                                        label="Add Item" slot="actions" onclick={handleClick} value={starter.Id}>
+                                        label="Add Item" slot="actions" onclick={handleClick}>
         
-                                        <lightning-input type="text" label="Customer Order Table" value={OrdRecord.OrderTable} onchange={handleCanChange}>  
-                                        </lightning-input>
-
                                     </lightning-button>
-                                        <p slot="footer"><b>Price:</b>  <lightning-icon icon-name="utility:moneybag"
+                                        <p slot="footer"><b>Price:   </b>  <lightning-icon class="red" icon-name="custom:custom17"
                                             alternative-text="Event"
-                                            size="xx-small"></lightning-icon> <b> {starter.CCXR_Price__c}</b>
+                                            size="small"></lightning-icon> <b> {contact.CCXR_Price__c}</b>
         
                                         </p>
-                                        
                                         <div class="slds-grid slds-no-flex">
                                         <div class="slds-size_1-of-2">
                                             <p>
                                                 <img
-                                                src={starter.Item_Image_Link__c}
+                                                src={contact.Item_Image_Link__c}
                                                 alt=" "
                                                 height="60px"
                                                 width="100px"/>
@@ -44,8 +47,8 @@
                                         <div class="slds-size_1-of-2">
                                             <p >
                                             
-                                                <b>Estimation Time: {starter.CCXR_Item_Prep_Time__c}<br>
-                                                Serves: {starter.CCXR_Serves__c}<br>
+                                                <b>Estimation Time: {contact.CCXR_Item_Prep_Time__c}<br>
+                                                Serves: {contact.CCXR_Serves__c}<br>
                                                 Quantity: <lightning-input type="number" name="Quantity" value="1" style="width:50px"></lightning-input>
                                                 </b>
                                             </p>
@@ -56,7 +59,7 @@
                         </template>
                     </div>
                 </template>
-                <template if:false={starters}>
+                <template if:false={contacts}>
                     <p>No Items found for this account.</p>
                 </template>
             </lightning-tab>
@@ -68,7 +71,7 @@
                     <div class="slds-grid slds-wrap" style="color: aqua;">
                         <template for:each={soups} for:item="soup">
                             <div key={soup.Id} class="slds-col
-                                slds-size_1-of-3 slds-p-around_medium">
+                                slds-size_1-of-2 slds-p-around_medium">
                                 <lightning-card class="image"
                                     title={soup.CCXR_Item_Name__c} style="color: black;">
                                     <lightning-button variant="brand"
@@ -76,9 +79,9 @@
         
                                     </lightning-button>
                                         <p slot="footer" style="color:
-                                        black;"><b>Price: </b> <lightning-icon icon-name="utility:moneybag"
+                                        black;"><b>Price: </b> <lightning-icon class="style1" icon-name="utility:moneybag"
                                             alternative-text="Event"
-                                            size="xx-small"></lightning-icon> <b> {soup.CCXR_Price__c}</b>
+                                            size="small"></lightning-icon> <b> {soup.CCXR_Price__c}</b>
         
                                         </p>
                                         <div class="slds-grid slds-no-flex">
@@ -118,7 +121,7 @@
                     <div class="slds-grid slds-wrap" style="color: aqua;">
                         <template for:each={riceItem} for:item="rice">
                             <div key={rice.Id} class="slds-col
-                                slds-size_1-of-3 slds-p-around_medium">
+                                slds-size_1-of-2 slds-p-around_medium">
                                 <lightning-card class="image"
                                     title={rice.CCXR_Item_Name__c} style="color: black;">
                                     <lightning-button variant="brand"
@@ -167,7 +170,7 @@
                     <div class="slds-grid slds-wrap" style="color: aqua;">
                         <template for:each={curries} for:item="curry">
                             <div key={curry.Id} class="slds-col
-                                slds-size_1-of-3 slds-p-around_medium">
+                                slds-size_1-of-2 slds-p-around_medium">
                                 <lightning-card class="image"
                                     title={curry.CCXR_Item_Name__c} style="color: black;">
                                     <lightning-button variant="brand"
@@ -215,7 +218,7 @@
                     <div class="slds-grid slds-wrap" style="color: aqua;">
                         <template for:each={roties} for:item="roti">
                             <div key={roti.Id} class="slds-col
-                                slds-size_1-of-3 slds-p-around_medium">
+                                slds-size_1-of-2 slds-p-around_medium">
                                 <lightning-card class="image"
                                     title={roti.CCXR_Item_Name__c} style="color: black;">
                                     <lightning-button variant="brand"
@@ -264,7 +267,7 @@
                     <div class="slds-grid slds-wrap" style="color: aqua;">
                         <template for:each={desserts} for:item="dessert">
                             <div key={dessert.Id} class="slds-col
-                                slds-size_1-of-3 slds-p-around_medium">
+                                slds-size_1-of-2 slds-p-around_medium">
                                 <lightning-card class="image"
                                     title={dessert.CCXR_Item_Name__c} style="color: black;">
                                     <lightning-button variant="brand"
@@ -310,7 +313,7 @@
     </lightning-tab>
             
         <!--2.Non-Veg-->
-    <lightning-tab label="Non-Vegetarian" icon-name="standard:customer"
+    <lightning-tab label="Non-Vegetarian" icon-name="custom:custom34"
     alternative-text="Event"
     size="xx-small">
         <lightning-tabset variant="vertical">
@@ -320,7 +323,7 @@
                     <div class="slds-grid slds-wrap" style="color: aqua;">
                         <template for:each={nonVegStarters} for:item="nonVegStarter">
                             <div key={nonVegStarter.Id} class="slds-col
-                                slds-size_1-of-3 slds-p-around_medium">
+                                slds-size_1-of-2 slds-p-around_medium">
                                 <lightning-card class="image"
                                     title={nonVegStarter.CCXR_Item_Name__c} style="color: black;">
                                     <lightning-button variant="brand"
@@ -370,7 +373,7 @@
                     <div class="slds-grid slds-wrap" style="color: aqua;">
                         <template for:each={nonVegSoups} for:item="nonVegSoup">
                             <div key={nonVegSoup.Id} class="slds-col
-                                slds-size_1-of-3 slds-p-around_medium">
+                                slds-size_1-of-2 slds-p-around_medium">
                                 <lightning-card class="image"
                                     title={nonVegSoup.CCXR_Item_Name__c} style="color: black;">
                                     <lightning-button variant="brand"
@@ -420,7 +423,7 @@
                     <div class="slds-grid slds-wrap" style="color: aqua;">
                         <template for:each={nonvegRiceItem} for:item="nonVegRice">
                             <div key={nonVegRice.Id} class="slds-col
-                                slds-size_1-of-3 slds-p-around_medium">
+                                slds-size_1-of-2 slds-p-around_medium">
                                 <lightning-card class="image"
                                     title={nonVegRice.CCXR_Item_Name__c} style="color: black;">
                                     <lightning-button variant="brand"
@@ -469,7 +472,7 @@
                     <div class="slds-grid slds-wrap" style="color: aqua;">
                         <template for:each={nonVegCurries} for:item="nonVegCurry">
                             <div key={nonVegCurry.Id} class="slds-col
-                                slds-size_1-of-3 slds-p-around_medium">
+                                slds-size_1-of-2 slds-p-around_medium">
                                 <lightning-card class="image"
                                     title={nonVegCurry.CCXR_Item_Name__c} style="color: black;">
                                     <lightning-button variant="brand"
@@ -517,7 +520,7 @@
                     <div class="slds-grid slds-wrap" style="color: aqua;">
                         <template for:each={nonVegRoties} for:item="nonVegRoti">
                             <div key={nonVegRoti.Id} class="slds-col
-                                slds-size_1-of-3 slds-p-around_medium">
+                                slds-size_1-of-2 slds-p-around_medium">
                                 <lightning-card class="image"
                                     title={nonVegRoti.CCXR_Item_Name__c} style="color: black;">
                                     <lightning-button variant="brand"
@@ -566,7 +569,7 @@
                     <div class="slds-grid slds-wrap" style="color: aqua;">
                         <template for:each={nonVegDesserts} for:item="nonVegDessert">
                             <div key={nonVegDessert.Id} class="slds-col
-                                slds-size_1-of-3 slds-p-around_medium">
+                                slds-size_1-of-2 slds-p-around_medium">
                                 <lightning-card class="image"
                                     title={nonVegDessert.CCXR_Item_Name__c} style="color: black;">
                                     <lightning-button variant="brand"
@@ -611,7 +614,7 @@
 
         </lightning-tabset>
     </lightning-tab>
-    <lightning-tab label="Beverages" icon-name="utility:food_and_drink"
+    <lightning-tab label="Beverages" icon-name="custom:custom48"
     alternative-text="Event"
     size="xx-small" >
         <lightning-tabset variant="vertical">
@@ -620,7 +623,7 @@
                     <div class="slds-grid slds-wrap" style="color: aqua;">
                         <template for:each={waterItem} for:item="water">
                             <div key={water.Id} class="slds-col
-                                slds-size_1-of-3 slds-p-around_medium">
+                                slds-size_1-of-2 slds-p-around_medium">
                                 <lightning-card class="image"
                                     title={water.CCXR_Item_Name__c} style="color: black;">
                                     <lightning-button variant="brand"
@@ -667,7 +670,7 @@
                     <div class="slds-grid slds-wrap" style="color: aqua;">
                         <template for:each={milkshakes} for:item="milkshake">
                             <div key={milkshake.Id} class="slds-col
-                                slds-size_1-of-3 slds-p-around_medium">
+                                slds-size_1-of-2 slds-p-around_medium">
                                 <lightning-card class="image"
                                     title={milkshake.CCXR_Item_Name__c} style="color: black;">
                                     <lightning-button variant="brand"
@@ -714,7 +717,7 @@
                     <div class="slds-grid slds-wrap" style="color: aqua;">
                         <template for:each={icecreams} for:item="icecream">
                             <div key={icecream.Id} class="slds-col
-                                slds-size_1-of-3 slds-p-around_medium">
+                                slds-size_1-of-2 slds-p-around_medium">
                                 <lightning-card class="image"
                                     title={icecream.CCXR_Item_Name__c} style="color: black;">
                                     <lightning-button variant="brand"
@@ -761,7 +764,7 @@
                     <div class="slds-grid slds-wrap" style="color: aqua;">
                         <template for:each={sweets} for:item="sweet">
                             <div key={sweet.Id} class="slds-col
-                                slds-size_1-of-3 slds-p-around_medium">
+                                slds-size_1-of-2 slds-p-around_medium">
                                 <lightning-card class="image"
                                     title={sweet.CCXR_Item_Name__c} style="color: black;">
                                     <lightning-button variant="brand"
@@ -806,6 +809,5 @@
         </lightning-tabset>
     </lightning-tab>
 </lightning-tabset>
-<!--</div>
-</div>-->
+</div>
 </template>

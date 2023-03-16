@@ -1,8 +1,6 @@
 <template>
     
     <template if:true={items}>
-        <div style="background-color: blue;">
-            <h1>hiiii</h1>
         <lightning-card style="background-color: transparent;">
         <b><p class="title">Today's Special</p></b>
         <div class="slds-grid slds-wrap" style="color: aqua;">
@@ -45,7 +43,6 @@
             </template>
         </div>
     </lightning-card>
-</div>
     </template>
     <template if:false={items}>
         <p>No Items found for this account.</p>

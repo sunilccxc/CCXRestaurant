@@ -1,6 +1,4 @@
 import { LightningElement,api,wire,track } from 'lwc';
-import createord from '@salesforce/apex/Ordercreation.createorder';
-import Order_Table from '@salesforce/schema/CCXR_Order__c.CCXR_Customer_Table__c';
 
 //1.veg
 import vegStarters from '@salesforce/apex/GetVegItems.vegStarterItems';
@@ -43,42 +41,6 @@ starters;
             console.error=error;
             this.records = undefined;
         }
-    }
-
-    @track japid 
-    @track error
-
-    @track OrdRecord ={
-        CCXR_Customer_Table__c:Order_Table,
-    };
-
-    handleCanChange(event)
-    {
-        
-    }
-    handleClick(event) 
-    {
-        this.itemid=event.target.value;
-        alert('ku');
-        alert(this.itemid);
-        alert('sdsd')
-        
-        createord({japRecobj:this.OrdRecord})
-        .then(result=>{
-            this.OrdRecord={};
-            this.japid=result.Id;
-            window.console.log(this.japid);
-            
-            const toastEvent = new ShowToastEvent({
-                title:'success',
-                message:'Order Record is Created Successfully',
-                variant:'success'
-            });
-            this.dispatchEvent(toastEvent);
-        })
-        .catch(error=>{
-            this.error=error.message;
-        });
     }
 
     //2. Veg Soups

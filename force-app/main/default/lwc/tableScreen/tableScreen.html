@@ -27,7 +27,7 @@
             <div class="slds-modal__container">
      
                <!-- popup body  -->
-               <c-table-details if:true={isShowModal1}></c-table-details>
+               <c-tableslist if:true={isShowModal1}></c-tableslist>
                <!-- popup footer -->
                <footer class="slds-modal__footer">
                   <button class="slds-button slds-button_neutral" onclick={hideModalBox1}>Close</button>
@@ -36,6 +36,20 @@
          </section>
          <div class="slds-backdrop slds-backdrop_open"></div>
       </template>
+      <!--<lightning-button variant="brand" label="Table List With Image" title="Table List With Image" onclick={showModalBox} class="slds-m-left_x-small"> 
+      </lightning-button>
+      <c-table-details ></c-table-details>
+      <template if:true={isShowModal}>    
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+           <div class="slds-modal__container">
+            
+              <footer class="slds-modal__footer">
+                 <button class="slds-button slds-button_neutral" onclick={hideModalBox}>Close</button>
+              </footer>      
+           </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+     </template>-->
       </div>
      </lightning-card>
 </template>

@@ -1,0 +1,20 @@
+<template>
+    <div style="margin-left: 35%;
+    margin-right: 35%;">
+        <lightning-card  title="Send Whatsapp Message" >
+        
+            <p class="slds-p-horizontal_x-small">
+                <lightning-input type="text" label="Enter a registered mobile number" placeholder='Type a mobile number here...'></lightning-input>
+            </p>
+         <p class="slds-p-horizontal_x-small">
+                <lightning-input type="text" label="Enter a message" placeholder='Type message here...' ></lightning-input>
+            </p> 
+            
+            <p slot="footer">
+                <lightning-button variant="success" label="Send Message" title="Successful action" onclick={handleClick} class="slds-m-right_x-small" ></lightning-button>
+            </p>
+            
+        </lightning-card>
+    </div>
+
+</template>

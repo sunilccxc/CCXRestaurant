@@ -35,7 +35,7 @@
                             <div class="slds-cell-wrap">{record.CCXR_Items_ID__r.CCXR_Item_Name__c}</div>
                         </td>
                         <td data-label="itemstatus">
-                            <div class="slds-cell-wrap">{record.Order_status__c}</div>
+                            <div class="slds-cell-wrap"><b class={record.Order_status__c}>{record.Order_status__c}</b></div>
                         </td>
                         <td data-label="comosdj">   
                           <lightning-combobox
@@ -56,17 +56,21 @@
                               variant="brand"
                               onclick={handleButtonClick}
                               value={record.Id}
+                              disabled={record.button__c}
                           ></lightning-button>
                       </td>
                    
                      
                       <td data-label="itemstatus">
                         <lightning-button
-                            disabled={buttone1}
                             label="Ready"
                             variant="success"
                             onclick={handleButtonClick11}
                             value={record.Id}
+                            disabled={record.button1__c}
+
+
+                            
                         ></lightning-button>
                     </td>
                   

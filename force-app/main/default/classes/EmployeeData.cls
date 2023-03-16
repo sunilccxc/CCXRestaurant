@@ -13,6 +13,15 @@ public static List<CCXR_Items__c> getItemList() {
              FROM CCXR_Items__c];
 }
 
+@AuraEnabled(cacheable=true)
+    public static List<CCXR_Table__c> getTableData()
+    {
+       list<CCXR_Table__c> table=[select Name,CCXR_Capacity__c,Table_Image_Link__c,CCXR_Restaurant_Employee__r.Name,
+                        CCXR_Table_Status__c From CCXR_Table__c];
+      
+        return table;
+       
+    }
     @AuraEnabled
     public static void deleteEmp(Id selRecordId)
      {
@@ -38,5 +47,12 @@ public static List<CCXR_Items__c> getItemList() {
          
       }
 
+    @AuraEnabled(cacheable = true)
+    public static List<CCXR_Feedback__c> getAllFeedback(){
+        List<CCXR_Feedback__c> feedList =[select Name,CCXR_Customer__c,CCXR_Table__c,CCXR_Order__r.Name,
+                                         CCXR_Food_Quality__c, CCXR_Service_Quality__c,CCXR_Suggestions__c
+                                         from  CCXR_Feedback__c where CCXR_Customer__c!= NULL ];
+        return feedList;
+    }
   
 }
