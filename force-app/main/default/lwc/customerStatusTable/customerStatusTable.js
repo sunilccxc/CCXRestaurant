@@ -17,8 +17,13 @@ export default class CustomerStatusTable extends LightningElement {
       this.wiredData = result;
       this.records = result.data;
       this.errors = result.error;
-    
-
+    }
+    @wire(getAccountNames,{ } )
+    wirednames(result1)
+    {
+      this.wiredData1 = result1;
+      this.records1= result1.data;
+      this.errors1 = result1.error;
     }
     handleSelection(event)
     {
@@ -31,8 +36,7 @@ export default class CustomerStatusTable extends LightningElement {
       
         this.recordid=event.target.value;
        
-        alert( this.tbid+'');
-        
+      
         status({recid : this.recordid,tid :this.tbid })
         .then(() => {
           // Refresh the data
@@ -44,7 +48,7 @@ export default class CustomerStatusTable extends LightningElement {
         statuss({recid : this.tbid })
         .then(() => {
           // Refresh the data
-          return refreshApex(this.wiredData);
+          return refreshApex(this.wiredData1);
         })
         .catch((error) => {
           console.error(error);
@@ -52,24 +56,12 @@ export default class CustomerStatusTable extends LightningElement {
         
     
     }
-    handleMouseOver()
-    {
-     
-      getAccountNames()
-      .then(result => {
-        this.accountOptions = result.map(account => ({
-          label: account.Name+','+'Capcity'+account.CCXR_Capacity__c,
-          value: account.Id
-        }));
-      })
-
-    }
+ 
 
     
-    
-
    
-    connectedCallback() 
+   
+    handleMouseOver() 
     {
     
       getAccountNames()
