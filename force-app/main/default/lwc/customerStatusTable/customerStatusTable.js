@@ -56,7 +56,7 @@ export default class CustomerStatusTable extends LightningElement {
         });
         this.i=0;
       console.log(this.i);
-    
+      alert(this.i);
     }
  
 
@@ -83,7 +83,7 @@ export default class CustomerStatusTable extends LightningElement {
         })
     this.i++;
   console.log(this.i);
-      
+     alert(this.i); 
     }
     
 }
