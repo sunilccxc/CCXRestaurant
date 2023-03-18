@@ -10,6 +10,7 @@ export default class CustomerStatusTable extends LightningElement {
     @api tbid;
     @api itemId;
     @api recordid;
+    @track i=0;
     accountOptions = [];
     @wire(getAllAccountsas,{ } )
     wiredCases(result)
@@ -30,7 +31,7 @@ export default class CustomerStatusTable extends LightningElement {
       this.tbid=event.target.value;
       
     }
-   
+  
     handleButtonClick(event)
     {
       
@@ -53,7 +54,8 @@ export default class CustomerStatusTable extends LightningElement {
         .catch((error) => {
           console.error(error);
         });
-        
+        this.i=0;
+      console.log(this.i);
     
     }
  
@@ -61,16 +63,26 @@ export default class CustomerStatusTable extends LightningElement {
     
    
    
-    handleMouseOver() 
-    {
+  
+    
+    handleMouseOver() {
+      if(this.i >= 1)
+      {
+        return;
+      }
     
       getAccountNames()
-      .then(result => {
-        this.accountOptions = result.map(account => ({
-          label: account.Name+','+'Capcity'+account.CCXR_Capacity__c,
-          value: account.Id
-        }));
-      })
+     
+        .then(result => {
+          this.accountOptions = result.map(account => ({
+            label: account.Name+','+'Capcity'+account.CCXR_Capacity__c,
+            value: account.Id
+            
+          }));
+          
+        })
+    this.i++;
+  console.log(this.i);
       
     }
     

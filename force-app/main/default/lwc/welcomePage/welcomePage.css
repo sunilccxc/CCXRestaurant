@@ -1,53 +1,67 @@
 .G1 {
   transform: translate(20px, 85px) rotate(-60deg);
+  letter-spacing: 10px;
 }
 
 .e1 {
   transform: translate(13px, 60px) rotate(-50deg);
+  letter-spacing: 10px;
 }
 
 .e2 {
   transform: translate(6px, 40px) rotate(-40deg);
+  letter-spacing: 10px;
+  
 }
 
 .k1 {
   transform: translate(3px, 23px) rotate(-30deg);
+  letter-spacing: 10px;
 }
 
 .s1 {
   transform: translate(2px, 14px) rotate(-20deg);
+  letter-spacing: 10px;
 }
 
 .f {
   transform: translate(1px, 8px) rotate(-10deg);
+  letter-spacing: 10px;
 }
 
 .o {
   transform: translate(0px, 5px) rotate(0deg);
+  letter-spacing: 10px;
 }
 
 .r {
   transform: translate(-1px, 8px) rotate(10deg);
+  letter-spacing: 10px;
 }
 
 .G2 {
   transform: translate(-2px, 14px) rotate(20deg);
+  letter-spacing: 10px;
 }
 
 .e3 {
   transform: translate(-3px, 25px) rotate(30deg);
+  letter-spacing: 10px;
 }
 
 .e4 {
   transform: translate(-6px, 40px) rotate(40deg);
+  letter-spacing: 10px;
 }
 
 .k2 {
-  transform: translate(-14px, 60px) rotate(50deg);
+  transform: translate(-17px, 60px) rotate(50deg);
+  letter-spacing: 10px;
 }
 
 .s2 {
-  transform: translate(-20px, 80px) rotate(60deg);
+  transform: translate(-28px, 83px) rotate(55deg);
+  letter-spacing: 10px;
 }
 
 /* An inline-block element is placed as an inline
@@ -56,5 +70,8 @@ but it behaves like a block element  */
 
 span {
   display: inline-block;
-  word-spacing: normal;
+  word-spacing: 20px;
+  text-align: center;
+  
+  
 }
