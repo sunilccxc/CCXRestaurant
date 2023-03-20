@@ -1,13 +1,16 @@
 <template>
     <!--Items Content !-->
-    <h2>Items Content</h2>
     <lightning-card>
         
     <!--Add Items-->
-            
+            <div class="p1">
             <lightning-button variant="brand" label="Add Items" onclick={showModalBox} 
-                        class="slds-m-left_x-small"></lightning-button>&nbsp;&nbsp;&nbsp;&nbsp;
+            ></lightning-button>&nbsp;&nbsp;&nbsp;&nbsp;
+            
+            <lightning-button variant="brand" label="Display Items" onclick={showComp1} 
+            ></lightning-button> 
 
+        </div>
             <template if:true={isShowModal}>
                                   
                     <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" 
@@ -44,8 +47,7 @@
             
 <!--Display Items-->
 
-<lightning-button variant="brand" label="Display Items" onclick={showComp1} 
-              class="slds-m-left_x-small"></lightning-button>   
+  
 <template if:true={showModalBox1}>
     <div class="backgroundImg" style={getBackgroundImage}>
     <div class="slds-grid slds-wrap">

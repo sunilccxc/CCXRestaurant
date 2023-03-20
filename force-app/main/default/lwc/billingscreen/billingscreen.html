@@ -1,7 +1,11 @@
 <template>
+
+  
   <lightning-card>
     
-   <b> <h1 style=" font-size: xx-small ; align: center">Customer Billing</h1></b>
+   <b><div style="text-align:center;"> <h1 style=" font-size: xx-large ">Bill</h1></div></b>
+   <br/>
+   <br/>
   
     <lightning-record-view-form
     object-api-name="CCXR_Order__c"
@@ -28,18 +32,23 @@
   </div>
   <br/>
   <br/>
-  <div class="myTableColor">
+  
+ 
+  
+
+  <div class="myTable">
   <lightning-datatable  
   
-  data={Orderlineitems} 
+   data={Orderlineitems} 
    columns={columns} 
   key-field="Id">
 
   </lightning-datatable>
 </div>
+
   <lightning-layout  >
   
-    <table  class="slds-table slds-table_bordered slds-table_resizable-cols slds-table_fixed-layout slds-table_edit mystles" role="grid" style="width: 66.75rem">
+    <table  class="slds-table slds-table_bordered slds-table_resizable-cols slds-table_fixed-layout slds-table_edit mystles" role="grid" style="width: 66.75rem ; color=blue">
       <tbody >
   
        <tr >   

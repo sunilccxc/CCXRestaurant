@@ -1,6 +1,6 @@
 import { LightningElement,api,wire,track } from 'lwc';
 import BackgroundImg from '@salesforce/resourceUrl/logo2';
-import Ordering from '@salesforce/apex/Order_Creation.createOrderAndOrderLines';
+import createOrderAndOrderLines from '@salesforce/apex/Order_Creation.createOrderAndOrderLines';
 //1.veg
 import vegStarters from '@salesforce/apex/GetVegItems.vegStarterItems';
 import vegSoups from '@salesforce/apex/GetVegItems.vegSoupItems';
@@ -22,8 +22,12 @@ import IceCreams from '@salesforce/apex/GetBeverageItems.iceCreamItems';
 import Sweets from '@salesforce/apex/GetBeverageItems.sweetItems';
 
 export default class displayItemsScreen extends LightningElement {
-    @track recordId;
-
+    @api itemid;
+    @api quantitynumber=1;
+    @api token;
+    @api id;
+    @api table;
+    @api cname;
     @track imageUrl = BackgroundImg;
     get getBackgroundImage(){
         return `background-image:url("${this.imageUrl}")`;
@@ -42,7 +46,18 @@ export default class displayItemsScreen extends LightningElement {
                 this.records = undefined;
             }
         }
-        
+        handleChange1(event) {
+            this.quantitynumber=event.target.value;
+          }
+        handleClick(event)
+        {
+            this.itemid=event.target.value;
+            createOrderAndOrderLines({csn :'a0A2w00000iYgIBEA0',itemid:this.itemid,quantity:this.quantitynumber})
+            
+
+        }
+
+       
 
         //2. Veg Soups
         soups;
@@ -57,9 +72,7 @@ export default class displayItemsScreen extends LightningElement {
             }
         }
 
-        handleClick(event) {
-            // Handle detail button click here
-        }
+        
 
 
         //3. Veg Rice
@@ -75,9 +88,7 @@ export default class displayItemsScreen extends LightningElement {
             }
         }
 
-        handleClick(event) {
-            // Handle detail button click here
-        }
+       
 
         //4. Veg Curries
         curries;
@@ -91,9 +102,7 @@ export default class displayItemsScreen extends LightningElement {
                 this.records = undefined;
             }
         }
-        handleClick(event) {
-            // Handle detail button click here
-        }
+      
 
 
         //5. Veg Desserts
@@ -108,10 +117,7 @@ export default class displayItemsScreen extends LightningElement {
                 this.records = undefined;
             }
         }
-        handleClick(event) {
-            // Handle detail button click here
-        }
-
+       
         //1.6. Non-Veg Roti
         nonVegRoties;
         @wire(nonVegRoti,{})
@@ -124,6 +130,7 @@ export default class displayItemsScreen extends LightningElement {
                 this.records = undefined;
             }
         }
+       
 
         //2.1 Non-Veg Starters
         nonVegStarters;
@@ -138,9 +145,7 @@ export default class displayItemsScreen extends LightningElement {
             }
         }
 
-        handleClick(event) {
-            // Handle detail button click here
-        }
+       
 
         //2.2 Non-Veg Soups
         nonVegSoups;
@@ -155,10 +160,7 @@ export default class displayItemsScreen extends LightningElement {
             }
         }
 
-        handleClick(event) {
-            // Handle detail button click here
-        }
-
+       
 
         //2.3. Non-Veg Rice
         nonvegRiceItem;
@@ -173,10 +175,7 @@ export default class displayItemsScreen extends LightningElement {
             }
         }
 
-        handleClick(event) {
-            // Handle detail button click here
-        }
-
+      
         //2.4. Non-Veg Curries
         nonVegCurries;
         @wire(nonVegCurries,{})
@@ -189,10 +188,7 @@ export default class displayItemsScreen extends LightningElement {
                 this.records = undefined;
             }
         }
-        handleClick(event) {
-            // Handle detail button click here
-        }
-
+        
 
         //2.5. Non-Veg Desserts
         nonVegDesserts;
@@ -206,9 +202,7 @@ export default class displayItemsScreen extends LightningElement {
                 this.records = undefined;
             }
         }
-        handleClick(event) {
-            // Handle detail button click here
-        }
+        
         //2.6. Non-Veg Roti
         roties;
         @wire(Roti,{})
@@ -221,9 +215,7 @@ export default class displayItemsScreen extends LightningElement {
                 this.records = undefined;
             }
         }
-        handleClick(event) {
-            // Handle detail button click here
-        }
+       
 
 
         //3.1 Water
@@ -238,9 +230,7 @@ export default class displayItemsScreen extends LightningElement {
                 this.records = undefined;
             }
         }
-        handleClick(event) {
-            // Handle detail button click here
-        }
+       
 
         //3.2 Milkshakes
         milkshakes;
@@ -254,9 +244,7 @@ export default class displayItemsScreen extends LightningElement {
                 this.records = undefined;
             }
         }
-        handleClick(event) {
-            // Handle detail button click here
-        }
+       
 
         //3.3 Ice Creams
         icecreams;
@@ -270,9 +258,7 @@ export default class displayItemsScreen extends LightningElement {
                 this.records = undefined;
             }
         }
-        handleClick(event) {
-            // Handle detail button click here
-        }
+      
 
         //3.4 Sweets
         sweets;
@@ -286,8 +272,6 @@ export default class displayItemsScreen extends LightningElement {
                 this.records = undefined;
             }
         }
-        handleClick(event) {
-            // Handle detail button click here
-        }
+       
 
 }

@@ -1,35 +1,23 @@
-
 <template>
-    <div class="restaurant-info">
-      <div class="logo-container">
-        <img class="logo" src={imageUrl} alt="Restaurant logo" />
-      </div>
-      <div class="bounce">
-     
-       
-        <b><h1>CCX RESTAURANT<br/></h1></b><br/><br/><br/><br/>
+    <div class="backgroundImg" >
         
-           
-         
     </div>
-      
-      <div class="address-container" style="  
-        font-family: 'Times New Roman', Times, serif;
-       font-style: italic;
-        font-size: small;
-         
-         color:white;
-         position: absolute;
-          bottom: 5px;
-          text-align:center;
-        "    >
-      
-       <p> Bhavani Nagar Rdno12
-          BanjaraHills,Hyderabad
-          500034s
-        </p></div>
-    </div>
-   
-  </template>
-  
-  
+    <div class="hero-text">
+        <img
+            src="https://commercecx125-dev-ed--c.develop.vf.force.com/resource/1679215264000/welcomeLogo"
+            alt=" "
+            height="150px"
+            width="150px"/>
+        <b><h1 style="font-size:40px">CCX Restaurant</h1></b>
+        <b><p style="font-size: 14px;">Road Number 12, Bhavani Nagar,Banjara Hills, Hyderabad, Telangana 500034, India</p></b>
+        <b><h2 style="font-size:25px">Welcomes You</h2></b>
+        <br/><br/>
+        <input type="text"  placeholder="Enter Token Number" required class="input"
+        style="width: fit-content;" onchange={handleTokenChange} value={tokenNumber}/>
+        &nbsp;&nbsp;
+        <lightning-icon icon-name="action:check"
+          alternative-text="Event"
+          size="small" onclick={enter}></lightning-icon>
+          
+      </div>
+</template>

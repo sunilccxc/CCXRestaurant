@@ -1,14 +1,14 @@
 import { LightningElement,track,api,wire } from 'lwc';
 import deleteTables from '@salesforce/apex/EmployeeData.deleteTable';
 import getTables from '@salesforce/apex/TableController.getTableData';
-//import upTables from '@salesforce/apex/EmployeeData.updateTable';
+import upTables from '@salesforce/apex/EmployeeData.updateTable';
 import BackgroundImg from '@salesforce/resourceUrl/logo2';
 
 export default class CcrTableContent extends LightningElement {
     imageUrl = BackgroundImg;
     @track getTab;
     @api drecordId;
-   // @api upRecord;
+   @api upRecord;
     @track isShowModal = false;
 
     showModalBox() {  
@@ -66,18 +66,16 @@ export default class CcrTableContent extends LightningElement {
                 
         }
 
-       /* handleUpdate(event){
-            this.upRecord=event.target.value;
+       handleUpdate(){
             upTables({upRecordId:this.upRecord})
             .then(() => {
-                this[NavigationMixin.Navigate]({
-                    type: 'standard__recordPage',
-                    attributes: {
-                        recordId: 'upRecord',
-                        objectApiName: 'CCXR_Table__c',
-                        actionName: 'edit'
-                    }
-                });
+                this.dispatchEvent(
+                    new ShowToastEvent({
+                        title: 'Success',
+                        message: 'Record Update successfully.',
+                        variant: 'success'
+                    })
+                );
             })
             .catch(error => {
                 this.dispatchEvent(
@@ -89,5 +87,5 @@ export default class CcrTableContent extends LightningElement {
                 );
             });
             
-        }*/
+        }
 }

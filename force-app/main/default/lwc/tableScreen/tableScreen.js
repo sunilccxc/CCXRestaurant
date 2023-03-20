@@ -21,14 +21,9 @@ export default class TableScreen extends LightningElement
     hideModalBox1() {  
         this.isShowModal1 = false;
     }
-
-    @track isShowModal2 = false;
-
-    showModalBox2() {  
-        this.isShowModal2 = true;
-    }
-
-    hideModalBox2() {  
-        this.isShowModal2 = false;
+ @track table;
+    onclick()
+    {
+        this.table=true;
     }
 }

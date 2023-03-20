@@ -1,0 +1,7 @@
+<aura:component implements="flexipage:availableForAllPageTypes,lightning:isUrlAddressable" access="global">
+    <aura:attribute type="String" name="token"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>    
+    <div class="slds-card">
+        <c:menuScreen token="{!v.token}"/>
+    </div>
+</aura:component>

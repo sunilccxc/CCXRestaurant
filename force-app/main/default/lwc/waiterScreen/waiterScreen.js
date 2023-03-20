@@ -1,5 +1,5 @@
 import { LightningElement,track,wire } from 'lwc';
-import getCustomer from '@salesforce/apex/CustomerTableStatus.getCustomer';
+
 
 export default class WaiterScreen extends LightningElement 
 {
@@ -18,10 +18,12 @@ export default class WaiterScreen extends LightningElement
     AssignTable()
     {
         this.customer=true;
+        this.customerstatus=false;
     }
     AllCustomerStatus()
     {
         this.customerstatus=true;
+        this.customer=false;
     }
     
     

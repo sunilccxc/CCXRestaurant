@@ -1,48 +1,50 @@
 <template>
-    <lightning-card
-    >
-            <lightning-tabset class="slds-tabs_default slds-tabs_large">
-            
-                <!-- <lightning-tab label="Menu" icon-name={iconName1} >
-                      Menu Content !<br/>
-                      <lightning-button variant="brand" label="Display Items" onclick={showModalBox} class="slds-m-left_x-small"></lightning-button> 
-                      <c-display-items-screen if:true={showAddItem2Component}></c-display-items-screen>
-                          
-                       <c-ccr-rs2 if:true={displayItemComponent}></c-ccr-rs2>
-                        <c-display-items-screen ></c-display-items-screen>
-                </lightning-tab>-->
+  <lightning-card>
+          <lightning-tabset class="slds-tabs_default slds-tabs_large ">
+          
+              <!-- <lightning-tab label="Menu" icon-name={iconName1} >
+                    Menu Content !<br/>
+                    <lightning-button variant="brand" label="Display Items" onclick={showModalBox} class="slds-m-left_x-small"></lightning-button> 
+                    <c-display-items-screen if:true={showAddItem2Component}></c-display-items-screen>
+                        
+                     <c-ccr-rs2 if:true={displayItemComponent}></c-ccr-rs2>
+                      <c-display-items-screen ></c-display-items-screen>
+              </lightning-tab>-->
 
-  <!--Chef & waiter Content-->              
-                <lightning-tab label="Employee Management" icon-name={iconName2}>
-                        <lightning-card >
-                            <lightning-button variant="brand" label="Add Employee" onclick={showComp3} 
-                            class="slds-align_absolute-center"></lightning-button>&nbsp;&nbsp;
-                    
-                            <c-registration if:true={showAddEmpComponent}></c-registration>  
-                      
-                            <lightning-button variant="brand" label="Display Employees" onclick={showComp4} 
-                            class="slds-align_absolute-center"></lightning-button>
-                            <c-ccr-chef-waiter if:true={displayEmpComponent} ></c-ccr-chef-waiter>
-                        </lightning-card>
-                </lightning-tab>
- 
+<!--Chef & waiter Content-->              
+              <lightning-tab label="Employee Management" icon-name={iconName2} class="slds-context-bar__label-action slds-truncate">
+                      <lightning-card >
+                        <div class="p1">
+                          <lightning-button variant="brand" label="Add Employee" onclick={showComp3}>
+                            
+                          </lightning-button>&nbsp;&nbsp;
+                          <lightning-button variant="brand" label="Display Employees" onclick={showComp4} >
 
-               
- <!--Table Content-->           
-                <lightning-tab label="Tables Management" icon-name={iconName3}>
-                      <c-ccr-table-content></c-ccr-table-content>
-                </lightning-tab>
+                          </lightning-button>
+                        </div>
+                          <c-registration if:true={showAddEmpComponent}></c-registration>  
+                         <c-ccr-chef-waiter if:true={displayEmpComponent} ></c-ccr-chef-waiter>
+                        
+                      </lightning-card>
+              </lightning-tab>
+
+
+             
+<!--Table Content-->           
+              <lightning-tab label="Tables Management" icon-name={iconName3}>
+                    <c-ccr-table-content></c-ccr-table-content>
+              </lightning-tab>
 <!--Add Items-->
-           
-                <lightning-tab label="Items Management" icon-name={iconName4}>
-                    <c-ccr-items-content></c-ccr-items-content>
-                </lightning-tab>
-            
-  <!--FeedBack Content-->
-           
-                 <lightning-tab label="FeedBacks" icon-name={iconName5}>
-                    <c-ccr-feedback-Table ></c-ccr-feedback-Table>
-                </lightning-tab>          
-            </lightning-tabset>
-    </lightning-card>
+         
+              <lightning-tab label="Items Management" icon-name={iconName4}>
+                  <c-ccr-items-content></c-ccr-items-content>
+              </lightning-tab>
+          
+<!--FeedBack Content-->
+         
+               <lightning-tab label="FeedBacks" icon-name={iconName5}>
+                  <c-ccr-feedback-Table ></c-ccr-feedback-Table>
+              </lightning-tab>          
+          </lightning-tabset>
+  </lightning-card>
 </template>

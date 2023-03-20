@@ -1,5 +1,6 @@
 import { LightningElement,api,wire,track } from 'lwc';
-
+import { CurrentPageReference } from 'lightning/navigation';
+import { decodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
 import BackgroundImg from '@salesforce/resourceUrl/logo';
 //1.veg
 import vegStarters from '@salesforce/apex/GetVegItems.vegStarterItems';
@@ -24,6 +25,19 @@ import Sweets from '@salesforce/apex/GetBeverageItems.sweetItems';
 import { NavigationMixin } from 'lightning/navigation';
 import {ShowToastEvent} from 'lightning/platformShowToastEvent';
 export default class displayItemsScreen extends NavigationMixin(LightningElement) {
+    @wire(CurrentPageReference)
+    setCurrentPageRef(pageRef) {
+        alert(pageRef+'pageRef from Item');
+        if (pageRef.state.defaultFieldValues) {
+            
+            const decodedValues = decodeDefaultFieldValues(pageRef.state.defaultFieldValues);
+            console.log(decodedValues);
+            parseInt(decodedValues);
+            alert(decodedValues);
+        }
+    }
+   
+
     imageUrl = BackgroundImg;
 
     get getBackgroundImage(){
@@ -37,6 +51,7 @@ export default class displayItemsScreen extends NavigationMixin(LightningElement
     @api errors;
     @api imageURL;
     @wire(vegStarters,{})
+   
     wiredContacts({ error, data }) {
         if (data) {
             this.starters = data;

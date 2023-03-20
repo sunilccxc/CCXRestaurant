@@ -2,7 +2,7 @@ public with sharing class Order_Creation
 {
     
     public static Id neworderid;
-	@AuraEnabled(cacheable=true)
+	@AuraEnabled()
 
     public static void  createOrderAndOrderLines(id csn,id itemid,integer quantity)
     {

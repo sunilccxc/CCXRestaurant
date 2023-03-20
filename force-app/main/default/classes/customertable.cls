@@ -42,7 +42,12 @@ public with sharing class customertable
       return [SELECT Id,Name,CCXR_Capacity__c FROM CCXR_Table__c where  CCXR_Table_Status__c in ('Vacant', 'Reserved') ];
     }
 
-    
+    @AuraEnabled
+    public static List<CCXR_Customer_Table_Status__c> getCustomerTableStatus(){
+        List<CCXR_Customer_Table_Status__c> accList =[select Name,Customer_Table_Status__c,Token_Number__c,CCXR_Customer__r.CCXR_Name__c,CCXR_Table__r.Name,CCXR_Customer__r.No_Of_Persons__c from  CCXR_Customer_Table_Status__c where Customer_Table_Status__c='Occupied'];
+        return accList;
+    }
+
 
 
 }

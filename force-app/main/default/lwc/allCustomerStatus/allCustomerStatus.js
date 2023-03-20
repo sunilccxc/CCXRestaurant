@@ -24,9 +24,3 @@ export default class allCustomerStatus extends LightningElement {
         }
     }
   }
-    
-   
-   
-  
-    
-    
