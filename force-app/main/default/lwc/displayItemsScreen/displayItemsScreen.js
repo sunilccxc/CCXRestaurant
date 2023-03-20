@@ -1,5 +1,6 @@
 import { LightningElement,api,wire,track } from 'lwc';
 
+import BackgroundImg from '@salesforce/resourceUrl/logo';
 //1.veg
 import vegStarters from '@salesforce/apex/GetVegItems.vegStarterItems';
 import vegSoups from '@salesforce/apex/GetVegItems.vegSoupItems';
@@ -23,10 +24,15 @@ import Sweets from '@salesforce/apex/GetBeverageItems.sweetItems';
 import { NavigationMixin } from 'lightning/navigation';
 import {ShowToastEvent} from 'lightning/platformShowToastEvent';
 export default class displayItemsScreen extends NavigationMixin(LightningElement) {
-@api recordId;
+    imageUrl = BackgroundImg;
 
-//1. Veg Starters
-starters;
+    get getBackgroundImage(){
+        return `background-image:url("${this.imageUrl}")`;
+    }
+    @api recordId;
+
+    //1. Veg Starters
+    starters;
     @track itemid;
     @api errors;
     @api imageURL;

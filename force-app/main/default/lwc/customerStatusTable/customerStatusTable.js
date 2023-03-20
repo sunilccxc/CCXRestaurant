@@ -6,6 +6,7 @@ import getAccountNames from '@salesforce/apex/customertable.getAccountNames';
 import {refreshApex} from '@salesforce/apex';
 export default class CustomerStatusTable extends LightningElement {
     @api records;
+    @api randomno
     @api errors;
     @api tbid;
     @api itemId;
@@ -34,11 +35,14 @@ export default class CustomerStatusTable extends LightningElement {
   
     handleButtonClick(event)
     {
+      this.randomno=Math.floor(Math.random() * (2000 - 1000)) + 1000;
+      alert(this.randomno);
+      
       
         this.recordid=event.target.value;
        
       
-        status({recid : this.recordid,tid :this.tbid })
+        status({recid : this.recordid,tid :this.tbid,ran : this.randomno })
         .then(() => {
           // Refresh the data
           return refreshApex(this.wiredData);
@@ -56,7 +60,7 @@ export default class CustomerStatusTable extends LightningElement {
         });
         this.i=0;
       console.log(this.i);
-      alert(this.i);
+    
     }
  
 
@@ -83,7 +87,7 @@ export default class CustomerStatusTable extends LightningElement {
         })
     this.i++;
   console.log(this.i);
-     alert(this.i); 
+      
     }
     
 }

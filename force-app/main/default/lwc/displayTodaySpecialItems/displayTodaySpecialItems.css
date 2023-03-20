@@ -1,7 +1,7 @@
 .title {
     animation: blinker 1.5s linear infinite;
-    color: orangered;
-    font-size: 20px;
+    color: white;
+    font-size: 25px;
     font-family: sans-serif;
     text-align: center;
 }
@@ -10,6 +10,8 @@
         opacity: 0;
     }
 }
-.my-card {
-    background-color: blue;
+.backgroundImg{
+    background-position: initial;
+    background-size: cover;
+    box-shadow: inset 0 0 0 2000px rgb(84 83 84 / 30%);
 }

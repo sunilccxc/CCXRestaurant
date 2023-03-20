@@ -40,7 +40,7 @@ export default class Billingscreen extends LightningElement {
         { id:'2',label: 'Name', fieldName: 'CCXR_Item_Name__c' },
         { id:'3',label: 'Quantity', fieldName: 'CCXR_Quantity__c' },
         { id:'4',label: 'Price', fieldName: 'CCXR_Price__c' },
-        { id:'5',label: 'Total', fieldName: 'CCXR_Total__c' }
+        { id:'5',label: 'Total', fieldName: 'CCXR_Total__c'  }
        ];
      
        @wire(displayoederlineitems,{orderid: '$recordId'})

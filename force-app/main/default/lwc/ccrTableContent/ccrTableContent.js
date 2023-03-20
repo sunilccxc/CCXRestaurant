@@ -1,11 +1,14 @@
 import { LightningElement,track,api,wire } from 'lwc';
 import deleteTables from '@salesforce/apex/EmployeeData.deleteTable';
 import getTables from '@salesforce/apex/TableController.getTableData';
+//import upTables from '@salesforce/apex/EmployeeData.updateTable';
+import BackgroundImg from '@salesforce/resourceUrl/logo2';
 
 export default class CcrTableContent extends LightningElement {
-
+    imageUrl = BackgroundImg;
     @track getTab;
     @api drecordId;
+   // @api upRecord;
     @track isShowModal = false;
 
     showModalBox() {  
@@ -34,6 +37,10 @@ export default class CcrTableContent extends LightningElement {
          }
      }
 
+     get getBackgroundImage(){
+        return `background-image:url("${this.imageUrl}")`;
+    }
+    
     handleDelete(event) 
         {
             this.drecordId=event.target.value;
@@ -58,4 +65,29 @@ export default class CcrTableContent extends LightningElement {
                 });
                 
         }
+
+       /* handleUpdate(event){
+            this.upRecord=event.target.value;
+            upTables({upRecordId:this.upRecord})
+            .then(() => {
+                this[NavigationMixin.Navigate]({
+                    type: 'standard__recordPage',
+                    attributes: {
+                        recordId: 'upRecord',
+                        objectApiName: 'CCXR_Table__c',
+                        actionName: 'edit'
+                    }
+                });
+            })
+            .catch(error => {
+                this.dispatchEvent(
+                    new ShowToastEvent({
+                        title: 'Error',
+                        message: 'Error deleting record: ' + error.body.message,
+                        variant: 'error'
+                    })
+                );
+            });
+            
+        }*/
 }

@@ -1,12 +1,17 @@
 import { LightningElement,api,wire } from 'lwc';
+import BackgroundImg from '@salesforce/resourceUrl/logo';
 import specialItems from '@salesforce/apex/GetSpecialItems.getTodaySpecialMenu';
 export default class DisplayItems extends LightningElement {
-    @api recordId;
+    imageUrl = BackgroundImg;
 
+    get getBackgroundImage(){
+        return `background-image:url("${this.imageUrl}")`;
+    }
+
+    @api recordId;
     //Speacial Items
         items;
         @api errors;
-        @api imageURL;
         @wire(specialItems,{})
         wiredSpeacialItems({ error, data }) {
             if (data) {

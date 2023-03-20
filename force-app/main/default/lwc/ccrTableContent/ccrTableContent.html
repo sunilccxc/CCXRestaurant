@@ -3,7 +3,7 @@
 
       <!--Add Tabless-->
     <lightning-button variant="brand" label="Add Table" title="Add Table" onclick={showModalBox}
-     class="slds-m-left_x-small"> </lightning-button>
+    class="slds-align_absolute-center"> </lightning-button>
     
     <template if:true={isShowModal}>    
       <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
@@ -21,11 +21,11 @@
    </template>
 
    <!--Display Tabless-->
-
+<br/>
 <lightning-button variant="brand" label="Display Tables" onclick={showComp1} 
-   class="slds-m-left_x-small"></lightning-button>   
+class="slds-align_absolute-center"></lightning-button>   
 <template if:true={showModalBox1}>
-
+   <div class="backgroundImg" style={getBackgroundImage}>
 <div class="slds-grid slds-wrap">
 <template for:each={getTab} for:item="tab">
  <div key={tab.Id} class="slds-col slds-size_1-of-2 slds-p-around_medium">
@@ -35,7 +35,9 @@
                      <b>Name : {tab.Name}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                      
                      <lightning-button label="Delete Table" variant="destructive-text" 
-                     onclick={handleDelete} value={tab.Id}></lightning-button>
+                     onclick={handleDelete} value={tab.Id}></lightning-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   <!--<lightning-button label="Edit Table" variant="destructive-text" 
+                     onclick={handleUpdate} value={tab.Id}></lightning-button>-->  
                  </p>
                  <div class="slds-grid slds-no-flex">
                      &nbsp;&nbsp;
@@ -65,6 +67,7 @@
    </div>
          
    </template>
+   </div>
    </div>
 </template> 
  </lightning-card>

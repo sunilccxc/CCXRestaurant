@@ -1,6 +1,6 @@
 <template>
-    <lightning-card >
-        <div class="my-class">
+    <lightning-card
+    >
             <lightning-tabset class="slds-tabs_default slds-tabs_large">
             
                 <!-- <lightning-tab label="Menu" icon-name={iconName1} >
@@ -14,14 +14,15 @@
 
   <!--Chef & waiter Content-->              
                 <lightning-tab label="Employee Management" icon-name={iconName2}>
-                        <lightning-card>
-                            <lightning-button variant="brand" label="Add Employee" onclick={showComp3} class="slds-m-left_x-small"></lightning-button>&nbsp;&nbsp;
+                        <lightning-card >
+                            <lightning-button variant="brand" label="Add Employee" onclick={showComp3} 
+                            class="slds-align_absolute-center"></lightning-button>&nbsp;&nbsp;
                     
                             <c-registration if:true={showAddEmpComponent}></c-registration>  
-                        </lightning-card>
-                        <lightning-card>
-                            <lightning-button variant="brand" label="Display Employees" onclick={showComp4} class="slds-m-left_x-small"></lightning-button>
-                            <c-ccr-res if:true={displayEmpComponent} ></c-ccr-res>
+                      
+                            <lightning-button variant="brand" label="Display Employees" onclick={showComp4} 
+                            class="slds-align_absolute-center"></lightning-button>
+                            <c-ccr-chef-waiter if:true={displayEmpComponent} ></c-ccr-chef-waiter>
                         </lightning-card>
                 </lightning-tab>
  
@@ -43,6 +44,5 @@
                     <c-ccr-feedback-Table ></c-ccr-feedback-Table>
                 </lightning-tab>          
             </lightning-tabset>
-        </div>
     </lightning-card>
 </template>

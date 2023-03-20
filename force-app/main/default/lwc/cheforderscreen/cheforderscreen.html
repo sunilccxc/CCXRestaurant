@@ -17,7 +17,13 @@
                     <div class="slds-truncate" title="Order Status">Order Status</div>
                   </th>
                   <th class="" scope="col">
+                    <div class="slds-truncate" title="Order Status">Available chefs</div>
+                  </th>
+                  <th class="" scope="col">
                     <div class="slds-truncate" title="AAssigned to">Assigned to</div>
+                  </th>
+                  <th class="" scope="col">
+                    <div class="slds-truncate" title="AAssigned to">Quantity</div>
                   </th>
                 
                 </tr>
@@ -42,15 +48,20 @@
                           options={accountOptions}
                           onchange={handleSelection}
                           onmouseover={handleMouseOver}
-                         
-                          value={record.Assignedtochef__c}
                           >
                         </lightning-combobox>
                       </td >
+                      
+                    
+                
+                      <td>{ record.Assignedtochef__r.Name}</td>
+                 
+                    <td data-label="itemname">
+                      <div class="slds-cell-wrap">{record.CCXR_Quantity__c}</div>
+                  </td>
                    
                       <td data-label="adsssds">
-                      
-                          <lightning-button
+                         <lightning-button
                               
                               label="Accept"
                               variant="brand"
@@ -68,10 +79,7 @@
                             onclick={handleButtonClick11}
                             value={record.Id}
                             disabled={record.button1__c}
-
-
-                            
-                        ></lightning-button>
+                            ></lightning-button>
                     </td>
                   
                     </tr>

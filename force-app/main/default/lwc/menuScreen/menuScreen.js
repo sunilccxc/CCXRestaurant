@@ -1,4 +1,6 @@
-import { LightningElement,api,wire } from 'lwc';
+import { LightningElement,api,wire,track } from 'lwc';
+import BackgroundImg from '@salesforce/resourceUrl/logo2';
+import Ordering from '@salesforce/apex/Order_Creation.createOrderAndOrderLines';
 //1.veg
 import vegStarters from '@salesforce/apex/GetVegItems.vegStarterItems';
 import vegSoups from '@salesforce/apex/GetVegItems.vegSoupItems';
@@ -20,8 +22,12 @@ import IceCreams from '@salesforce/apex/GetBeverageItems.iceCreamItems';
 import Sweets from '@salesforce/apex/GetBeverageItems.sweetItems';
 
 export default class displayItemsScreen extends LightningElement {
-    @api recordId;
+    @track recordId;
 
+    @track imageUrl = BackgroundImg;
+    get getBackgroundImage(){
+        return `background-image:url("${this.imageUrl}")`;
+    }
     //1. Veg Starters
         contacts;
         @api errors;
@@ -36,10 +42,7 @@ export default class displayItemsScreen extends LightningElement {
                 this.records = undefined;
             }
         }
-
-        handleClick(event) {
-            // Handle detail button click here
-        }
+        
 
         //2. Veg Soups
         soups;
@@ -121,10 +124,6 @@ export default class displayItemsScreen extends LightningElement {
                 this.records = undefined;
             }
         }
-        handleClick(event) {
-            // Handle detail button click here
-        }
-
 
         //2.1 Non-Veg Starters
         nonVegStarters;

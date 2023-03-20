@@ -22,6 +22,7 @@ public static List<CCXR_Items__c> getItemList() {
         return table;
        
     }
+    
     @AuraEnabled
     public static void deleteEmp(Id selRecordId)
      {
@@ -46,6 +47,15 @@ public static List<CCXR_Items__c> getItemList() {
           delete delTab;
          
       }
+
+      @AuraEnabled
+         public static void updateTable(Id upRecordId)
+        {
+        CCXR_Table__c upTab = [Select Name,id from CCXR_Table__c 
+                                                where id=:upRecordId];
+          update upTab;
+        
+         }
 
     @AuraEnabled(cacheable = true)
     public static List<CCXR_Feedback__c> getAllFeedback(){

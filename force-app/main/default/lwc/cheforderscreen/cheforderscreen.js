@@ -2,6 +2,7 @@ import { LightningElement,api,track,wire } from 'lwc';
 import getAllAccounts from '@salesforce/apex/customTable.getAllAccounts';
 import updatecheforderstatus from '@salesforce/apex/customTable.updatecheforderstatus';
 import updatecheforderstatus1 from '@salesforce/apex/customTable.updatecheforderstatus1';
+import updatechefemployeestatus1 from '@salesforce/apex/customTable.updatechefemployeestatus1';
 import getAccountNames from '@salesforce/apex/customTable.getAccountNames';
 import { refreshApex } from '@salesforce/apex';
 
@@ -32,9 +33,9 @@ export default class Cheforderscreen extends LightningElement{
       this.chefidd = event.target.value;
     }
     handleButtonClick(event) {
+      alert('loh');
       this.button1v=true;
       this.button2v=false;
-     
       this.itemId = event.target.value;
       updatecheforderstatus({ cat: this.itemId, cat1: this.chefidd,but1 :this.button1v,but2 :this.button2v })
         .then(() => {
@@ -44,7 +45,9 @@ export default class Cheforderscreen extends LightningElement{
         .catch((error) => {
           console.error(error);
         });
-    }
+      updatechefemployeestatus1({cid :this.chefidd})
+        alert(this.chefidd);
+      }
     handleButtonClick11(event)
     {
       
@@ -72,6 +75,7 @@ export default class Cheforderscreen extends LightningElement{
       })
       
     }
+    /*
     handleMouseOver()
     {
       getAccountNames({accountName:this.itemId})
@@ -83,4 +87,5 @@ export default class Cheforderscreen extends LightningElement{
       })
 
     }
+    */
   }
