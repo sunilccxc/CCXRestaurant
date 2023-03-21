@@ -1,6 +1,8 @@
 import { LightningElement,api,wire,track } from 'lwc';
+import { NavigationMixin } from 'lightning/navigation';
 import BackgroundImg from '@salesforce/resourceUrl/logo2';
 import createOrderAndOrderLines from '@salesforce/apex/Order_Creation.createOrderAndOrderLines';
+import getCustomerTableStatusData from '@salesforce/apex/Order_Creation.getCustomerTableStatusData';
 //1.veg
 import vegStarters from '@salesforce/apex/GetVegItems.vegStarterItems';
 import vegSoups from '@salesforce/apex/GetVegItems.vegSoupItems';
@@ -21,13 +23,15 @@ import Milkshakes from '@salesforce/apex/GetBeverageItems.milkshakeItems';
 import IceCreams from '@salesforce/apex/GetBeverageItems.iceCreamItems';
 import Sweets from '@salesforce/apex/GetBeverageItems.sweetItems';
 
-export default class displayItemsScreen extends LightningElement {
+export default class displayItemsScreen extends NavigationMixin(LightningElement) {
     @api itemid;
     @api quantitynumber=1;
     @api token;
     @api id;
     @api table;
     @api cname;
+    @api  csn;
+    @api orderid;
     @track imageUrl = BackgroundImg;
     get getBackgroundImage(){
         return `background-image:url("${this.imageUrl}")`;
@@ -52,9 +56,35 @@ export default class displayItemsScreen extends LightningElement {
         handleClick(event)
         {
             this.itemid=event.target.value;
-            createOrderAndOrderLines({csn :'a0A2w00000iYgIBEA0',itemid:this.itemid,quantity:this.quantitynumber})
             
-
+            createOrderAndOrderLines({csn :this.id,itemid:this.itemid,quantity:this.quantitynumber})
+           /* getCustomerTableStatusData({csn :this.id}) 
+            .then(result=>{
+                this.data1=result;
+                this.orderid=data1.id;  
+                alert(this.orderid);            
+            })
+            .catch(error=>{
+                this.error=error;
+            })*/
+           
+            
+        }
+        generateBill()
+        {
+            
+           /* this[NavigationMixin.Navigate]({
+                type: "standard__component",
+                attributes: {
+                    componentName: "c__billingcomponent"
+                },
+                state: {
+                   
+                    c__order: this.data.id,
+                  
+                }
+            });
+      */
         }
 
        

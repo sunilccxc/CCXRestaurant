@@ -35,20 +35,23 @@ export default class WelcomePage extends NavigationMixin(LightningElement) {
     enter() 
     {
         CustomerTableStatusData({token:this.tokenNumber})
+        
         .then(result=>{
             this.data=result;
-            this[NavigationMixin.Navigate]({
-                type: "standard__component",
-                attributes: {
-                    componentName: "c__NavigationHelper"
-                },
-                state: {
-                    c__token: this.tokenNumber,
-                    c__table: this.data.CCXR_Table__r.Name,
-                    c__id: this.data.Id,
-                    c__cname:this.data.CCXR_Customer__r.Name
-                }
-            });
+           
+           this[NavigationMixin.Navigate]({
+            type: "standard__component",
+            attributes: {
+                componentName: "c__NavigationHelper"
+            },
+            state: {
+                c__token: this.tokenNumber,
+                c__table: this.data.CCXR_Table__r.Name,
+                c__id: this.data.Id,
+                c__csn: this.data.Name,
+                c__cname:this.data.CCXR_Customer__r.Name
+            }
+        });
         })
         
        

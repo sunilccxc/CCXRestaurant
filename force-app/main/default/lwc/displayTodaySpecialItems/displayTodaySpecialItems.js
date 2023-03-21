@@ -8,8 +8,10 @@ imageUrl = BackgroundImg;
 get getBackgroundImage(){
     return `background-image:url("${this.imageUrl}")`;
 }
-
-
+@api id;
+    @api table;
+    @api cname;
+@api csn;
 @api quantitynumber=1;
 @api recordId;
 
@@ -31,8 +33,8 @@ get getBackgroundImage(){
         }
     handleClick(event)
     {
-        alert('hello');
+       
         this.recordId=event.target.value;
-        createOrderAndOrderLines({csn :'a0A2w00000iYgIBEA0',itemid:this.recordId,quantity:this.quantitynumber})
+        createOrderAndOrderLines({csn :this.id,itemid:this.recordId,quantity:this.quantitynumber})
     }
 }
