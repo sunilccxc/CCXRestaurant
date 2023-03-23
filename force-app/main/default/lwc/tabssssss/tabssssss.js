@@ -1,32 +1,47 @@
-import { LightningElement,api } from 'lwc';
-import Roti from '@salesforce/apex/tabsssss.rotiItems';
+import { LightningElement,api,wire } from 'lwc';
+import vegStarters from '@salesforce/apex/tabsssss.vegStarterItems';
 
 export default class MyComponent extends LightningElement {
-    @api contacts;
+
     @api cat;
     @api sub;
+    contacts;
+    @api errors;
+    @api imageURL;
+    /*@wire(vegStarters,{})
+    wiredContacts({ error, data }) {
+        if (data) {
+            this.contacts = data;
+            this.errors = undefined;
+        } else if (error) {
+            console.error=error;
+            this.records = undefined;
+        }
+    }*/
     call(event)
     {
         this.cat=event.target.value;
        
-        alert(this.cat);
+        
     }
     call1(event)
     {
         this.sub=event.target.value;
        
-        alert(this.sub);
-       
-    }
-    display()
-    {
-        Roti({cat:cat,sub:sub})
+      
+        vegStarters({cat: this.cat,sub: this.sub})
         .then(result=>{
-            this.data=result;
-            alert(this.data);
+            this.contacts=result;
+           
         })
         .catch(error=>{
             this.error=error;
-        })
+        }) 
+        
     } 
+       
+       
+    
+    
+       
 }
