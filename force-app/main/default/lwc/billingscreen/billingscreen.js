@@ -18,7 +18,7 @@ export default class Billingscreen extends LightningElement {
     @track error  ;
     @track Orderlineitems ;
     orders;
-
+    @api order;
     isCssLoaded = false
 
     @api objectApiName;
@@ -48,19 +48,38 @@ export default class Billingscreen extends LightningElement {
         { id:'5',label: 'Total', fieldName: 'CCXR_Total__c'  }
        ];
      
-       @wire(displayoederlineitems,{orderid: '$recordId'})
+    /*   @wire(displayoederlineitems,{orderid: this.order})
     wiredColumns({
         error,
         data
     }) {
         if (data) {
+            alert(this.order);
             this.Orderlineitems = data;
         } else if(error) {
             this.error = error;
         }
     }
-
+*/
+connectedCallback(){
+    displayoederlineitems({orderid :this.order}) 
+    .then(result=>{
+        this.data=result;
+        this.Orderlineitems = this.data;
+        alert( this.Orderlineitems);
+        
+    
+       
+ 
+    
+        
+    })
+    .catch(error=>{
+        this.error=error;
+    })
+}
     renderedCallback(){ 
+       
         if(this.isCssLoaded) return
         this.isCssLoaded = true
         loadStyle(this, COLORS).then(()=>{
