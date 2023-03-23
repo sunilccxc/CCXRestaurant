@@ -31,7 +31,7 @@ export default class displayItemsScreen extends NavigationMixin(LightningElement
     @api table;
     @api cname;
     @api  csn;
-    @api orderid;
+    @api id1;
     @track imageUrl = BackgroundImg;
     get getBackgroundImage(){
         return `background-image:url("${this.imageUrl}")`;
@@ -58,33 +58,36 @@ export default class displayItemsScreen extends NavigationMixin(LightningElement
             this.itemid=event.target.value;
             
             createOrderAndOrderLines({csn :this.id,itemid:this.itemid,quantity:this.quantitynumber})
-           /* getCustomerTableStatusData({csn :this.id}) 
+           getCustomerTableStatusData({csn :this.id}) 
             .then(result=>{
-                this.data1=result;
-                this.orderid=data1.id;  
-                alert(this.orderid);            
+                this.data=result;
+               this.id1=this.data.Id
+                alert(this.data);
+            
+               
+             alert( this.data.Id);
+            
+                
             })
             .catch(error=>{
                 this.error=error;
-            })*/
-           
-            
+            })
         }
         generateBill()
         {
-            
-           /* this[NavigationMixin.Navigate]({
+        
+           this[NavigationMixin.Navigate]({
                 type: "standard__component",
                 attributes: {
                     componentName: "c__billingcomponent"
                 },
                 state: {
                    
-                    c__order: this.data.id,
+                    c__order: this.id1
                   
                 }
             });
-      */
+      
         }
 
        

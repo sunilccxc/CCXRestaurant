@@ -55,16 +55,18 @@ public with sharing class Order_Creation
            
                    
     }
-    @AuraEnabled
-    public static CCXR_Order__c  getCustomerTableStatusData(Id csn)
-    {
-      
-        CCXR_Order__c cts = [select id,name,CCXR_Customer_Table_Status__r.id,CCXR_Customer_Table_Status__r.name
-                            from CCXR_Order__c where CCXR_Customer_Table_Status__r.id=:csn and CCXR_Order_Status__c='Progress' ];
-        system.debug(cts.id);
-        return cts;
-        
-    }
+   
+
+        @AuraEnabled(cacheable=true)
+    
+        public static CCXR_Order__c  getCustomerTableStatusData(id csn)
+        {
+          
+            CCXR_Order__c cts = [select id from CCXR_Order__c where CCXR_Customer_Table_Status__r.id=:csn and CCXR_Order_Status__c='Progress' ];
+            
+            return cts;
+        }
+    
 }
 
 /*Order_Creation obj = new Order_Creation();

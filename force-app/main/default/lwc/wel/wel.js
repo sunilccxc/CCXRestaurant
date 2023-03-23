@@ -1,5 +1,33 @@
-import { LightningElement,track } from 'lwc';
+import { LightningElement,api } from 'lwc';
 
+import getCustomerTableStatusData1 from '@salesforce/apex/test.igg1';
+import { NavigationMixin } from 'lightning/navigation';
 export default class Wel extends LightningElement {
-    @track imageUrl='https://commercecx34-dev-ed--c.vf.force.com/resource/1678685906000/logo2';
+    @api id='a0P5g00000EgzfFEAR'
+    @api id1;
+    connectedCallback()
+    {
+      
+        }
+       
+        generateBill()
+        {
+            getCustomerTableStatusData1({csn: this.id}) 
+            .then(result=>{
+                this.data=result;
+                alert(this.data);
+        
+            alert(this.data.Id);  
+             
+                
+            })
+            .catch(error=>{
+                this.error=error;
+            }) 
+               
+           
+          
+          
+    }
+      
 }

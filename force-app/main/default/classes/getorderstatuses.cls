@@ -12,7 +12,7 @@ public class getorderstatuses {
             orderst=[select CCXR_OrderLineItem_Status__c,CCXR_Order_ID__r.CCXR_Order_Status__c,
                                            CCXR_Order_ID__r.CCXR_Customer__c, CCXR_Order_ID__r.CCXR_Table__c,CCXR_Order_ID__r.Name,
                                            CCXR_Order_ID__r.CCXR_Grand_Total__c,CCXR_Order_ID__r.CCXR_Tax__c,CCXR_Order_ID__r.CCXR_Discount__c,
-                                           CCXR_Order_ID__r.CCXR_Net_Total__c,
+                                           CCXR_Order_ID__r.CCXR_Net_Total__c,CCXR_Order_ID__r.CCXR_Order_Date_Time__c,
                                      Name,CCXR_Item_Name__c,CCXR_Quantity__c,CCXR_Price__c,CCXR_Total__c
                                              from CCXR_Order_Line_Item__c
                                    where  

@@ -36,6 +36,7 @@ export default class WelcomePage extends NavigationMixin(LightningElement) {
     {
         CustomerTableStatusData({token:this.tokenNumber})
         
+        
         .then(result=>{
             this.data=result;
            

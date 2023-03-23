@@ -1,0 +1,110 @@
+<template>
+    <lightning-tabset class="slds-tabs_default slds-tabs_large">
+
+        <lightning-tab label="Vegetarian" value="Vegetarian" icon-name="standard:customer"
+        alternative-text="Event"
+        size="xx-small" onactive={call}>
+    
+            <lightning-tabset variant="vertical">
+                <!--1..1. Starters-->
+                <lightning-tab label="Starters" value="Starters" onactive={call}>
+                    <template if:true={contacts}>
+                        <div class="slds-grid slds-wrap" style="color: aqua;">
+                            <template for:each={contacts} for:item="contact">
+                                <div key={contact.Id} class="slds-col
+                                    slds-size_1-of-2 slds-p-around_medium">
+                                    <lightning-card class="image"
+                                        title={contact.CCXR_Item_Name__c} style="color: black;">
+                                        <lightning-button variant="brand"
+                                            label="Add Item" slot="actions" onclick={handleClick} value ={contact.Id}>
+            
+                                        </lightning-button>
+                                            <p slot="footer"><b>Price:   </b>  <lightning-icon class="red" icon-name="custom:custom17"
+                                                alternative-text="Event"
+                                                size="small"></lightning-icon> <b> {contact.CCXR_Price__c}</b>
+            
+                                            </p>
+                                            <div class="slds-grid slds-no-flex">
+                                            <div class="slds-size_1-of-2">
+                                                <p>
+                                                    <img
+                                                    src={contact.Item_Image_Link__c}
+                                                    alt=" "
+                                                    height="60px"
+                                                    width="100px"/>
+                                                </p>
+                                            </div>
+                                            <div class="slds-size_1-of-2">
+                                                <p >
+                                                
+                                                    <b>Estimation Time: {contact.CCXR_Item_Prep_Time__c}<br>
+                                                    Serves: {contact.CCXR_Serves__c}<br>
+                                                    Quantity: <lightning-input type="number" name="Quantity" onchange={handleChange1} placeholder="1" style="width:50px" ></lightning-input>
+                                                    </b>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </lightning-card>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                    <template if:false={contacts}>
+                        <p>No Items found for this account.</p>
+                    </template>
+                </lightning-tab>
+    
+    
+                <!--1.2. Veg Soups-->
+                <lightning-tab label="Soups">
+                    <template if:true={soups}>
+                        <div class="slds-grid slds-wrap" style="color: aqua;">
+                            <template for:each={soups} for:item="soup">
+                                <div key={soup.Id} class="slds-col
+                                    slds-size_1-of-2 slds-p-around_medium">
+                                    <lightning-card class="image"
+                                        title={soup.CCXR_Item_Name__c} style="color: black;">
+                                        <lightning-button variant="brand"
+                                            label="Add Item" slot="actions" onclick={handleClick} value ={soup.Id}> 
+            
+                                        </lightning-button>
+                                            <p slot="footer" style="color:
+                                            black;"><b>Price: </b> <lightning-icon class="style1" icon-name="utility:moneybag"
+                                                alternative-text="Event"
+                                                size="small"></lightning-icon> <b> {soup.CCXR_Price__c}</b>
+            
+                                            </p>
+                                            <div class="slds-grid slds-no-flex">
+                                            <div class="slds-size_1-of-2">
+                                                <p>
+                                                    <img
+                                                    src={soup.Item_Image_Link__c}
+                                                    alt=" "
+                                                    height="60px"
+                                                    width="100px"/>
+                                                </p>
+                                            </div>
+                                            <div class="slds-size_1-of-2">
+                                                <p >
+                                                
+                                                    <b>Estimation Time: {soup.CCXR_Item_Prep_Time__c}<br>
+                                                    Serves: {soup.CCXR_Serves__c}<br>
+                                                    Quantity: <lightning-input type="number" name="Quantity"  onchange={handleChange1} placeholder="1" value={quantitynumber}  style="width:50px"></lightning-input>
+                                                    </b>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </lightning-card>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                    <template if:false={soups}>
+                        <p>No Items found for this account.</p>
+                    </template>
+                </lightning-tab>
+            </lightning-tabset>
+        </lightning-tab>
+    </lightning-tabset>
+  </template>
+  
