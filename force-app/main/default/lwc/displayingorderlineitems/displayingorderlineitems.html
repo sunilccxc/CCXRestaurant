@@ -1,6 +1,7 @@
 <template>
     
-    <lightning-card title='Chef Orders' icon-name="custom:custom11" onload={call}>
+    <lightning-card title='Chef Orders' icon-name="custom:custom11" >
+      <lightning-button name="Refresh" icon-name="Refresh" onclick={handleRefresh}></lightning-button>
         <table class="slds-table slds-table_cell-buffer slds-table_bordered" >
             <thead>
                 <tr class="slds-line-height_reset">
@@ -23,6 +24,7 @@
                 </tr>
               </thead>
               <tbody>
+               
                 <template for:each={data} for:item ='record'>
                 <tr class="" key = {record.Id}>
                         <td data-label="odrerno">
@@ -41,6 +43,7 @@
                         
                   
                     </tr>
+              
                 </template>
             </tbody>
         </table>

@@ -1,18 +1,9 @@
 import { LightningElement } from 'lwc';
-import { NavigationMixin } from 'lightning/navigation';
- 
-export default class LWCSourceNavigation extends NavigationMixin(LightningElement) {
-         
-    handleLWCNavigate() {
-        this[NavigationMixin.Navigate]({
-            type: "standard__component",
-            attributes: {
-                componentName: "c__NavigationHelper"
-            },
-            state: {
-                c__amount: 1000
-            }
-        });
-    }
-         
+
+export default class ComponentA extends LightningElement {
+  handleChange(event) {
+    const value = event.target.value;
+    const evt = new CustomEvent('valuechange', { detail: value });
+    this.dispatchEvent(evt);
+  }
 }

@@ -1,43 +1,36 @@
-
-h1{
-   
-    font-family: 'Times New Roman', Times, serif;
-   font-style: italic;
-    font-size: 2.5em;
-     text-align: center;
-     color: white;
-    
-   }
-   h2 {
- 
- 
-     font-family: 'Times New Roman', Times, serif;
-    font-style: italic;
-     font-size: medium;
-      text-align: center;
-      color:white;
-    
-      
-    }
- 
- 
- 
-   .bounce {
-     height: 100px;
-     overflow: hidden;
-     position: relative;
-     background:rgb(255, 38, 0);
-     color: #333;
-     border: 1px solid #4a4a4a;
- }
- 
- 
- 
- 
- 
- 
- 
- 
+.backgroundImg{
+  background-position:center;
+  background-size: cover;
+  height: 1000px;
+  
+}
+.hero-text {
+  text-align: center;
+  font-size: 25px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: orangered;
+}   
+.button{
+  height: 35px;
+  width: 35px;
+}
+.input{
+  left: 50%;
+-webkit-border-radius: 60px;
+border-radius: 60px;
+border: none;
+color: orangered;
+cursor: pointer;
+display: inline-block;
+font-family: sans-serif;
+font-size: 30px;
+padding: 5px 15px;
+text-align: center;
+text-decoration: none;
+}
  
  
  

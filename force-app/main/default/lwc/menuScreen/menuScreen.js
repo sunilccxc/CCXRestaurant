@@ -55,6 +55,8 @@ export default class displayItemsScreen extends NavigationMixin(LightningElement
           }
         handleClick(event)
         {
+            
+           
             this.itemid=event.target.value;
             
             createOrderAndOrderLines({csn :this.id,itemid:this.itemid,quantity:this.quantitynumber})
