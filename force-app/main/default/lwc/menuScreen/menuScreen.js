@@ -53,28 +53,24 @@ export default class displayItemsScreen extends NavigationMixin(LightningElement
         handleChange1(event) {
             this.quantitynumber=event.target.value;
           }
-        handleClick(event)
-        {
-            
-           
-            this.itemid=event.target.value;
-            
-            createOrderAndOrderLines({csn :this.id,itemid:this.itemid,quantity:this.quantitynumber})
-           getCustomerTableStatusData({csn :this.id}) 
-            .then(result=>{
-                this.data=result;
-               this.id1=this.data.Id
-                alert(this.data);
-            
-               
-             alert( this.data.Id);
-            
-                
-            })
-            .catch(error=>{
-                this.error=error;
-            })
-        }
+          handleClick(event)
+          {
+              alert('lol');
+             
+              this.itemid=event.target.value;
+               window.postMessage({type: 'doSomething'}, '*');
+              createOrderAndOrderLines({csn :this.id,itemid:this.itemid,quantity:this.quantitynumber})
+             getCustomerTableStatusData({csn :this.id}) 
+              .then(result=>{
+                  this.data=result;
+                 this.id1=this.data.Id
+                 alert(this.id1);
+              })
+              .catch(error=>{
+                  this.error=error;
+              })
+             
+          }
         generateBill()
         {
         

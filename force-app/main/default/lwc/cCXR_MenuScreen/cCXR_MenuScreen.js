@@ -7,6 +7,5 @@ export default class CCXR_MenuScreen extends LightningElement {
     @api cname;
     @api  csn;
 connectedCallback(){
-   
-}    
+}
 }

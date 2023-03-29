@@ -5,18 +5,46 @@ export default class Displayingorderlineitems extends LightningElement {
   @api id;
   @track data;
   @track errors;
+  @wire(getAllFeed,{csn: '$id' } )
+  wiredCases(result)
+  {
+    this.wiredData = result;
+    this.data = result.data;
+    this.errors = result.error;
+    
+  }
+  connectedCallback() {
+ 
+    window.addEventListener('message', this.handleMessage.bind(this));
+    
+   
+  }
 
-  @wire(getAllFeed, {csn: '$id'})
-wiredData;
+  
 
-  handleRefresh() {
+  handleMessage(event) {
+    if (event.data.type === 'doSomething') {
+       
+        this.doSomething();
+
+        
+    }
+  }
+
+  doSomething() 
+  {
+   
+    alert('dfsa');
     getAllFeed({csn : this.id})
         .then(result => {
             this.data = result;
-            return refreshApex(this.wiredData);
+            alert(this.data);
+            return refreshApex(this.wiredData); 
         })
         .catch(error => {
             this.errors = error;
         });
+        
   }
+
 }
