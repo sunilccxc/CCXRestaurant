@@ -10,8 +10,25 @@
         opacity: 0;
     }
 }
-.backgroundImg{
-    background-position: initial;
-    background-size: cover;
-    box-shadow: inset 0 0 0 2000px rgb(84 83 84 / 30%);
+/*.backgroundImg{
+    background-color: rgb(255, 38, 0);
+    height: 350px; /* adjust height as needed 
+    width: 320px;
+    border: 1px solid black;
+   
+    margin: 5px; /* adjust padding as needed 
+
+}*/
+:host{
+    --slds-c-button-shadow-focus:0 0 3px #8f5a0c;
+    --slds-c-button-brand-color-background:rgb(255, 38, 0);
+    --slds-c-button-brand-color-background-hover:rgb(218, 100, 3);
+    --slds-c-button-radius-border:90px;
+    --slds-c-button-brand-color-border:White;
+    --slds-c-button-brand-text-color:rgb(15, 15, 15);
+    
+}
+.card-style{
+    font-size: 12px;
+    color: black;
 }

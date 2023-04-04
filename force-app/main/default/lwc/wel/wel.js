@@ -2,16 +2,12 @@ import { LightningElement,track,api,wire} from 'lwc';
 import CustomerTableStatusData from '@salesforce/apex/CustomerTableStatusData.getCustomerTableStatusData';
 import { NavigationMixin } from 'lightning/navigation';
 import { encodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
-import BackgroundImg from '@salesforce/resourceUrl/welcomePageBG';
+
 export default class WelcomePage extends NavigationMixin(LightningElement) {
     @api tokenNumber='';
     @api records;
     @api errors; 
-    @track imageUrl = BackgroundImg;
-   
-    get getBackgroundImage(){
-        return `background-image:url("${this.imageUrl}")`;
-    }
+  
     handleTokenChange(event) 
     {
         this.tokenNumber=event.target.value;
@@ -39,7 +35,7 @@ export default class WelcomePage extends NavigationMixin(LightningElement) {
        .then(result=>{
             this.data=result;
            
-           this[NavigationMixin.Navigate]({
+       /*    this[NavigationMixin.Navigate]({
             type: "standard__component",
             attributes: {
                 componentName: "c__NavigationHelper"
@@ -51,11 +47,11 @@ export default class WelcomePage extends NavigationMixin(LightningElement) {
                 c__csn: this.data.Name,
                 c__cname:this.data.CCXR_Customer__r.Name
             }
-        });
+        });*/
            
     
         });
-       /*  let compDefinitions = 
+         let compDefinitions = 
             {
             componentDef: "c:cCXR_MenuScreen",
             attributes: {
@@ -74,7 +70,7 @@ export default class WelcomePage extends NavigationMixin(LightningElement) {
             attributes: {
                 url: "/one/one.app#" + encodedCompDefs
             }
-        });*/
+        });
         
         
        

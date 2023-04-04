@@ -53,41 +53,7 @@ export default class WelcomePage extends NavigationMixin(LightningElement) {
                 c__cname:this.data.CCXR_Customer__r.Name
             }
         });
-       /* let compDefinitions = [
-            {
-            componentDef: "c:menuScreenheader",
-            attributes: {
-                token: this.tokenNumber,
-                table: this.data.CCXR_Table__r.Name,
-                id: this.data.Id,
-                csn: this.data.Name,
-                cname:this.data.CCXR_Customer__r.Name
-            }
-        },{
-             componentDef: "c:menuScreen",
-            attributes: {
-                token: this.tokenNumber,
-                table: this.data.CCXR_Table__r.Name,
-                id: this.data.Id,
-                csn: this.data.Name,
-                cname:this.data.CCXR_Customer__r.Name
-            }
-        }
-        ];
-        
-        // Base64 encode the compDefinition JS object
-        let encodedCompDefs = btoa(JSON.stringify(compDefinitions));
-        this[NavigationMixin.Navigate]({
-            type: "standard__webPage",
-            attributes: {
-                url: "/one/one.app#" + encodedCompDefs
-            }
-        });*/
-        })
-        
-       
-       
-           
-    }
- 
-    }
+    })
+}
+    
+}

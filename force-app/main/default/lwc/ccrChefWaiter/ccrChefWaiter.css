@@ -1,5 +1,17 @@
 .backgroundImg{
-    background-position:initial;
-    background-size: cover;
-    
+    background-color: rgb(255, 38, 0);
+ }
+.THIS .concern {
+    color: #ffffff;
+    background-color:#f0c63e; 
+}
+
+.THIS .concern:hover,
+.THIS .concern:active {
+    background-color:#f0b73e;
+}
+
+.THIS .concern:disabled {
+    background-color:#c9c7c5;
+    cursor: not-allowed;
 }

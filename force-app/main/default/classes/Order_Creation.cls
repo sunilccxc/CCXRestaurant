@@ -62,11 +62,20 @@ public with sharing class Order_Creation
         public static CCXR_Order__c  getCustomerTableStatusData(id csn)
         {
           
-            CCXR_Order__c cts = [select id from CCXR_Order__c where CCXR_Customer_Table_Status__r.id=:csn and CCXR_Order_Status__c='Progress' ];
+            CCXR_Order__c cts = [select id,Name from CCXR_Order__c where CCXR_Customer_Table_Status__r.id=:csn and CCXR_Order_Status__c='Progress' ];
             
             return cts;
         }
+        @AuraEnabled
     
+        public static void  getCustomerTableStatusData1(id csn)
+        {
+          
+            CCXR_Order__c cts = [select id,Name,CCXR_Order_Status__c from CCXR_Order__c where CCXR_Customer_Table_Status__r.id=:csn and CCXR_Order_Status__c='Progress' ];
+            cts.CCXR_Order_Status__c='Completed';
+            update cts;
+         
+        }
 }
 
 /*Order_Creation obj = new Order_Creation();

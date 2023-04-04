@@ -1,15 +1,18 @@
 <template>
     <div class="slds-box slds-theme_shade">
+        <lightning-card>
+            <c-ccxheadercmp></c-ccxheadercmp>
+        </lightning-card>
     <lightning-card >
         <div class="headtitle">
             <span class="slds-avatar slds-avatar_circle slds-avatar_large">
             
             <p data-aura-rendered-by="435:0"> 
-                 <img alt="Person name" src={imageUrl}/>
+                 <img alt="Person name" src={imageUrl1}/>
                 </p>
             
             </span> &nbsp;&nbsp;
-            <lightning-formatted-text value="Restaurant Customer Satifaction Survey" class="warning">
+            <lightning-formatted-text value="CCX Restaurant Customer Satifaction Survey" class="warning">
 
             </lightning-formatted-text>
         </div>
@@ -63,9 +66,14 @@
     </template>
     </div>
     </lightning-card>
+    <div style="padding: 15px; font-size: 17px;"> 
+    <h1>Suggestions</h1>
     
-
-    <lightning-button  label="Submit feedback" onclick={createfeedbackRec} variant="brand" class="button"></lightning-button>
+    <lightning-textarea name="input3" placeholder="Any Suggestions...." style="width: 550px;font-family: 'Times New Roman', Times, serif" onchange={handlesuggestion}></lightning-textarea>
+    <lightning-input value={ordername} label="CCXR_Order" ></lightning-input>
+    <br>
+</div>
+    <lightning-button  label="Submit feedback" disabled={disableButton} onclick={createfeedbackRec} variant="brand" class="button"></lightning-button>
     </lightning-card>
     </div>
     </template>

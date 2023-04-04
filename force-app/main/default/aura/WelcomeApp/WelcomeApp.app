@@ -1,4 +1,4 @@
 <aura:application extends="force:slds">
-    <c:welcomePage/>
+    <c:cCXR_MenuScreen/>
 	
 </aura:application>

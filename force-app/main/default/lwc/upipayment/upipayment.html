@@ -1,0 +1,48 @@
+<template>
+   
+
+  <lightning-card title="UPI Payment" icon-name="standard:payment_gateway">
+  </lightning-card>
+
+<div style="float: left; width:50%">
+    <lightning-card>
+        <br/>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+    <p style="text-align: center;">Enter your UPI ID/VPA and make payment on your UPI app.</p>
+    &nbsp;
+    <b>UPI ID /VPA</b>
+    <br/>
+    <lightning-input  type="text" value="" placeholder="UPI ID/VPA"></lightning-input>
+    <br/>
+    <lightning-button variant="success" class="slds-align_absolute-center" value="" label="Pay"></lightning-button>
+ <br/>
+ <br/>
+ <br/>
+ <br/>
+
+    </lightning-card>
+
+</div>
+
+
+<div style="float: right; width:50%">
+   
+    <lightning-card>
+        <p style="text-align: center;">Scan QR code to Complete your UPI payment on your mobile device.</p>
+       <br/>
+       
+        <img
+        src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=upi://pay?pa=8919944389@paytm&pn=John%20Doe&amount={{amount}}&tn=Payment%20for%20Invoice%20XYZ123"
+        alt=" "
+        height="250px"
+        width="250px"
+        class="slds-align_absolute-center"
+        
+        />
+    </lightning-card>
+</div>
+
+</template>

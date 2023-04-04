@@ -1,11 +1,9 @@
-import { LightningElement,api } from 'lwc';
+import { LightningElement,api,track } from 'lwc';
 
 export default class CCXR_MenuScreen extends LightningElement {
     @api token;
-    @api id;
     @api table;
+    @api id;
+    @api csn;
     @api cname;
-    @api  csn;
-connectedCallback(){
-}
 }

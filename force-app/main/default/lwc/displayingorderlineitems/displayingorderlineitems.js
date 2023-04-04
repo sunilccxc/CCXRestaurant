@@ -5,6 +5,7 @@ export default class Displayingorderlineitems extends LightningElement {
   @api id;
   @track data;
   @track errors;
+
   @wire(getAllFeed,{csn: '$id' } )
   wiredCases(result)
   {
@@ -13,38 +14,16 @@ export default class Displayingorderlineitems extends LightningElement {
     this.errors = result.error;
     
   }
-  connectedCallback() {
- 
-    window.addEventListener('message', this.handleMessage.bind(this));
-    
-   
-  }
-
   
-
-  handleMessage(event) {
-    if (event.data.type === 'doSomething') {
-       
-        this.doSomething();
-
-        
-    }
-  }
-
-  doSomething() 
-  {
-   
-    alert('dfsa');
+  handleRefresh() {
+    alert('hi');
     getAllFeed({csn : this.id})
         .then(result => {
             this.data = result;
-            alert(this.data);
-            return refreshApex(this.wiredData); 
+            return refreshApex(this.wiredData);
         })
         .catch(error => {
             this.errors = error;
         });
-        
   }
-
 }

@@ -3,27 +3,33 @@
     <lightning-card title='Chef Orders' icon-name="custom:custom11">
         <table class="slds-table slds-table_cell-buffer slds-table_bordered">
             <thead>
-                <tr class="slds-line-height_reset">
-                  <th class="" scope="col">
+                <tr class="slds-line-height_reset" >
+                  <th class="" scope="col" style="text-align:center">
                     <div class="slds-truncate" title="order id">Order No</div>
                   </th>
-                  <th class="" scope="col">
+                  <th class="" scope="col" style="text-align:center">
                     <div class="slds-truncate" title="Table No">Table No</div>
                   </th>
-                  <th class="" scope="col">
+                  <th class="" scope="col" style="text-align:center">
                     <div class="slds-truncate" title="Item Name">Item Name</div>
                   </th>
-                  <th class="" scope="col">
+                  <th class="" scope="col" style="text-align:center">
                     <div class="slds-truncate" title="Order Status">Order Status</div>
                   </th>
-                  <th class="" scope="col">
+                  <th class="" scope="col" style="text-align:center">
                     <div class="slds-truncate" title="Order Status">Available chefs</div>
                   </th>
-                  <th class="" scope="col">
+                  <th class="" scope="col" style="text-align:center">
                     <div class="slds-truncate" title="AAssigned to">Assigned to</div>
                   </th>
-                  <th class="" scope="col">
+                  <th class="" scope="col" style="text-align:center">
                     <div class="slds-truncate" title="AAssigned to">Quantity</div>
+                  </th>
+                  <th class="" scope="col" style="text-align:center">
+                    <div class="slds-truncate" title="AAssigned to">Accept</div>
+                  </th>
+                  <th class="" scope="col" style="text-align:center">
+                    <div class="slds-truncate" title="AAssigned to">Ready</div>
                   </th>
                 
                 </tr>
@@ -31,19 +37,19 @@
               <tbody>
                 <template for:each={records} for:item ='record'>
                 <tr class="" key = {record.Id}>
-                        <td data-label="odrerno">
+                        <td data-label="odrerno" style="text-align:center">
                             <div class="slds-cell-wrap"><a href="javascript:void(0);">{record.CCXR_Order_Id__r.Name}</a></div>
                         </td>
-                        <td data-label="tableno">
+                        <td data-label="tableno" style="text-align:center">
                             <div class="slds-cell-wrap"><a href="javascript:void(0);">{record.CCXR_Table__c}</a></div>
                         </td>
-                        <td data-label="itemname">
+                        <td data-label="itemname" style="text-align:center">
                             <div class="slds-cell-wrap">{record.CCXR_Items_ID__r.CCXR_Item_Name__c}</div>
                         </td>
-                        <td data-label="itemstatus">
+                        <td data-label="itemstatus" style="text-align:center">
                             <div class="slds-cell-wrap"><b class={record.Order_status__c}>{record.Order_status__c}</b></div>
                         </td>
-                        <td data-label="comosdj">   
+                        <td data-label="comosdj" style="text-align:center">   
                           <lightning-combobox
                           options={accountOptions}
                           onchange={handleSelection}
@@ -54,13 +60,20 @@
                       
                     
                 
-                      <td>{ record.Assignedtochef__r.Name}</td>
-                 
-                    <td data-label="itemname">
+                      <td data-label="Assignedto" style="text-align:center">
+                        <template if:true={record.Assignedtochef__r}>
+                          <div class="slds-cell-wrap">{record.Assignedtochef__r.Name}</div>
+                        </template>
+                        <template if:false={record.Assignedtochef__r}>
+                          <div class="slds-cell-wrap"></div>
+                        </template>
+                      </td>
+                      
+                    <td data-label="itemname" style="text-align:center">
                       <div class="slds-cell-wrap">{record.CCXR_Quantity__c}</div>
                   </td>
                    
-                      <td data-label="adsssds">
+                      <td data-label="adsssds" style="text-align:center">
                          <lightning-button
                               
                               label="Accept"
@@ -72,7 +85,7 @@
                       </td>
                    
                      
-                      <td data-label="itemstatus">
+                      <td data-label="itemstatus" style="text-align:center">
                         <lightning-button
                             label="Ready"
                             variant="success"

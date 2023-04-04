@@ -2,14 +2,16 @@ import { LightningElement,track,wire,api } from 'lwc';
 import getItmList from '@salesforce/apex/EmployeeData.getItemList';
 import deleteRecordItm from '@salesforce/apex/EmployeeData.deleteItems';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import BackgroundImg from '@salesforce/resourceUrl/logo2';
+//import BackgroundImg from '@salesforce/resourceUrl/logo2';
+import { NavigationMixin } from "lightning/navigation";
 
-export default class CcrRS extends LightningElement {
-    imageUrl = BackgroundImg;
+export default class CcrRS extends NavigationMixin(LightningElement ) {
+   // imageUrl = BackgroundImg;
 
     @track error;
     @track  itmList;
 
+    @api upRecordIDs;
     @api imageURL;
     @api drecordId;
 
@@ -47,9 +49,9 @@ export default class CcrRS extends LightningElement {
                 this.error = error;
             }
         }
-        get getBackgroundImage(){
+       /* get getBackgroundImage(){
             return `background-image:url("${this.imageUrl}")`;
-        }
+        }*/
     handleDelete(event) 
         {
             this.drecordId=event.target.value;
@@ -76,6 +78,20 @@ export default class CcrRS extends LightningElement {
                 });
                 
         }
-        
+        handleUpdate(event)
+        {
+            
+             this.upRecordIDs=event.target.value;
+            
+            // getItmList({upRecordId:this.upRecordIDs})
+             this[NavigationMixin.Navigate]({
+                 type: 'standard__recordPage',
+                 attributes: {
+                     recordId: this.upRecordIDs,
+                     objectApiName: 'CCXR_Items__c',
+                     actionName: 'edit'
+                 },
+             });
+        }
 
 }

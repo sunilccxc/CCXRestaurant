@@ -9,16 +9,20 @@ import orderdiscount from '@salesforce/schema/CCXR_Order__c.CCXR_Discount__c';
 import ordernettotal from '@salesforce/schema/CCXR_Order__c.CCXR_Net_Total__c';
 import displayoederlineitems from '@salesforce/apex/getorderstatuses.orderstatuses'; 
 
+import { NavigationMixin } from 'lightning/navigation';
 
 import {loadStyle} from 'lightning/platformResourceLoader'
 import COLORS from '@salesforce/resourceUrl/colors'
 
-export default class Billingscreen extends LightningElement {
+export default class Billingscreen extends NavigationMixin(LightningElement) {
     @api recordId;
     @track error  ;
     @track Orderlineitems ;
     orders;
     @api order;
+    @api ordername;
+    @track isShowModal =false;
+
     isCssLoaded = false
 
     @api objectApiName;
@@ -47,39 +51,24 @@ export default class Billingscreen extends LightningElement {
         { id:'4',label: 'Price', fieldName: 'CCXR_Price__c' },
         { id:'5',label: 'Total', fieldName: 'CCXR_Total__c'  }
        ];
+       connectedCallback(){
+        displayoederlineitems({orderid :this.order}) 
+        .then(result=>{
+            this.data=result;
+            this.Orderlineitems = this.data;
+            alert( this.Orderlineitems);
+            
+        
+           
      
-    /*   @wire(displayoederlineitems,{orderid: this.order})
-    wiredColumns({
-        error,
-        data
-    }) {
-        if (data) {
-            alert(this.order);
-            this.Orderlineitems = data;
-        } else if(error) {
-            this.error = error;
-        }
+        
+            
+        })
+        .catch(error=>{
+            this.error=error;
+        })
     }
-*/
-connectedCallback(){
-    displayoederlineitems({orderid :this.order}) 
-    .then(result=>{
-        this.data=result;
-        this.Orderlineitems = this.data;
-        alert( this.Orderlineitems);
-        
-    
-       
- 
-    
-        
-    })
-    .catch(error=>{
-        this.error=error;
-    })
-}
     renderedCallback(){ 
-       
         if(this.isCssLoaded) return
         this.isCssLoaded = true
         loadStyle(this, COLORS).then(()=>{
@@ -88,5 +77,43 @@ connectedCallback(){
             console.error("Error in loading the colors")
         })
     }
-    
+    gotopayment() {
+        let compDefinition = {
+            componentDef: "c:upi",
+            attributes: {
+                ordername: this.ordername,
+                order: this.order
+              
+            }
+        };
+     
+        // Base64 encode the compDefinition JS object
+        let encodedCompDef = btoa(JSON.stringify(compDefinition));
+        this[NavigationMixin.Navigate]({
+            type: "standard__webPage",
+            attributes: {
+                url: "/one/one.app#" + encodedCompDef
+            }
+        });
+    }
+   
+    gotoFeedback() {
+        let compDefinition = {
+            componentDef: "c:feedbackform2",
+            attributes: {
+                ordername: this.ordername,
+                order: this.order
+              
+            }
+        };
+     
+        // Base64 encode the compDefinition JS object
+        let encodedCompDef = btoa(JSON.stringify(compDefinition));
+        this[NavigationMixin.Navigate]({
+            type: "standard__webPage",
+            attributes: {
+                url: "/one/one.app#" + encodedCompDef
+            }
+        });
+    }
 }

@@ -1,14 +1,15 @@
 import { LightningElement,track,api,wire } from 'lwc';
 import deleteTables from '@salesforce/apex/EmployeeData.deleteTable';
-import getTables from '@salesforce/apex/TableController.getTableData';
-import upTables from '@salesforce/apex/EmployeeData.updateTable';
-import BackgroundImg from '@salesforce/resourceUrl/logo2';
+import getTables from '@salesforce/apex/EmployeeData.getTableData1';
+//import BackgroundImg from '@salesforce/resourceUrl/logo2';
+import { NavigationMixin } from "lightning/navigation";
 
-export default class CcrTableContent extends LightningElement {
-    imageUrl = BackgroundImg;
+export default class CcrTableContent extends NavigationMixin(LightningElement )
+{
+    //imageUrl = BackgroundImg;
     @track getTab;
     @api drecordId;
-   @api upRecord;
+    @api upRecordIDs;
     @track isShowModal = false;
 
     showModalBox() {  
@@ -37,10 +38,10 @@ export default class CcrTableContent extends LightningElement {
          }
      }
 
-     get getBackgroundImage(){
+    /* get getBackgroundImage(){
         return `background-image:url("${this.imageUrl}")`;
     }
-    
+    */
     handleDelete(event) 
         {
             this.drecordId=event.target.value;
@@ -65,27 +66,25 @@ export default class CcrTableContent extends LightningElement {
                 });
                 
         }
-
-       handleUpdate(){
-            upTables({upRecordId:this.upRecord})
-            .then(() => {
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Success',
-                        message: 'Record Update successfully.',
-                        variant: 'success'
-                    })
-                );
-            })
-            .catch(error => {
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Error',
-                        message: 'Error deleting record: ' + error.body.message,
-                        variant: 'error'
-                    })
-                );
+        
+       
+       handleUpdate(event)
+       {
+           
+            this.upRecordIDs=event.target.value;
+            //getTables({upRecordId:this.upRecordIDs})
+            this[NavigationMixin.Navigate]({
+                type: 'standard__recordPage',
+                attributes: {
+                    recordId: this.upRecordIDs,
+                    objectApiName: 'CCXR_Table__c',
+                    actionName: 'edit'
+                },
             });
+        
+            
             
         }
+            
+       
 }

@@ -1,0 +1,6 @@
+:host{
+    --slds-c-button-shadow-focus:0 0 3px #8f5a0c;
+    --slds-c-button-brand-color-background: rgb(3, 3, 3);
+    --slds-c-button-brand-color-border:White;
+    --slds-c-button-brand-text-color:dark-green;
+}

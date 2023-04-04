@@ -2,8 +2,9 @@ public class EmployeeData {
     
 @AuraEnabled(cacheable=true)
 public static List<CCXR_Restaurant_Employee__c> getEmployeeList() {
-    return [SELECT Id, CCXR_Name__c, CCXR_Phone__c, CCXR_Email__c,
+    return [SELECT Id, CCXR_Name__c, CCXR_Phone__c, CCXR_Email__c,CCXR_Aadhar_Number__c,
              CCXR_Type_of_Employee__c,(Select Name,CCXR_Chef_Current_Status__c from CCXR_Chef_Statuses__r)
+
                 FROM CCXR_Restaurant_Employee__c];
 }
 @AuraEnabled(cacheable=true)
@@ -16,8 +17,20 @@ public static List<CCXR_Items__c> getItemList() {
 @AuraEnabled(cacheable=true)
     public static List<CCXR_Table__c> getTableData()
     {
-       list<CCXR_Table__c> table=[select Name,CCXR_Capacity__c,Table_Image_Link__c,CCXR_Restaurant_Employee__r.Name,
-                        CCXR_Table_Status__c From CCXR_Table__c];
+       list<CCXR_Table__c> table=[select Name,CCXR_Capacity__c,Table_Image_Link__c,
+                                  CCXR_Restaurant_Employee__r.CCXR_Name__c,
+                                    CCXR_Table_Status__c From CCXR_Table__c
+                                     where CCXR_Restaurant_Employee__r.CCXR_Name__c != Null];
+      
+        return table;
+       
+    }
+    @AuraEnabled(cacheable=true)
+    public static List<CCXR_Table__c> getTableData1()
+    {
+       list<CCXR_Table__c> table=[select Name,CCXR_Capacity__c,Table_Image_Link__c,
+                                     Assigned_Waiter__c,CCXR_Table_Status__c From CCXR_Table__c
+                                   ];
       
         return table;
        

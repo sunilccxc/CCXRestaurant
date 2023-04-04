@@ -3,4 +3,3 @@ import imageUrl from '@salesforce/resourceUrl/logo'
 export default class Wel extends LightningElement {
     @track imageUrl1=imageUrl;
 }
-

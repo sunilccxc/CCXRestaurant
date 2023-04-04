@@ -1,18 +1,18 @@
 <template>
-    
+    <div class="backgroundImg" > 
+        <br>
+    <b><p class="title"><u>Today's Specials</u></p></b>
+    <br><br>
     <template if:true={items}>
-        
-            <lightning-card style="background-color: transparent;">
-                
-                <b><p class="title">Today's Special</p></b>
-                    <div class="slds-grid slds-wrap" style="color: aqua">
+                          
+                    <div class="slds-grid slds-wrap">
                         <template for:each={items} for:item="item">
                             <div key={item.Id} class="slds-col
                                 slds-size_1-of-1 slds-p-around_medium">
-                                <lightning-card class="image" 
-                                    title={item.CCXR_Item_Name__c} style="color: black;" variant="border">
-                                    <lightning-button variant="brand"
-                                        label="Add Item" slot="actions" onclick={handleClick} value={item.Id}>
+                                <lightning-card class="card-style" >
+                                    <h1 slot="title" style="font-size: 14px;font-weight:bolder;">{item.CCXR_Item_Name__c}</h1>
+                                    <lightning-button variant="brand" style="font-weight:bolder;"
+                                        label="ADD ITEM" slot="actions" onclick={handleClick} value={item.Id}>
 
                                     </lightning-button>
                             
@@ -27,18 +27,22 @@
                                             </p>
                                         </div>
                                         <div class="slds-size_1-of-2">
-                                            <p >
                                             
-                                                <b>Estimation Time: {item.CCXR_Prearation_Time__c}<br>
+                                            
+                                                <b>Preparation Time: {item.CCXR_Item_Prep_Time__c}<br>
                                                 Serves: {item.CCXR_Serves__c}<br>
-                                                Quantity: <lightning-input type="number" name="Quantity" onchange={handleChange1} placeholder="1" style="width:50px" ></lightning-input>
-                                                </b>
-                                            </p>
+                                                <div >
+                                                    <lightning-input  type="number"  style="width:60px;" label="Quantity:" onchange={handleChange1}></lightning-input>
+                                                        
+                                                        
+                                                </div>
+                                            </b>
+                                            
                                         </div>
                                     </div>
-                                    <p slot="footer"><b>Price:</b>  <lightning-icon icon-name="utility:moneybag"
+                                    <p slot="footer"><b>Price:</b>  </b><lightning-icon icon-name="custom:custom17"
                                         alternative-text="Event"
-                                        size="xx-small"></lightning-icon> <b> {item.CCXR_Price__c}</b>
+                                        size="small"></lightning-icon> <b> {item.CCXR_Price__c}</b>
 
                                     </p>
                                     
@@ -47,8 +51,8 @@
                         </template>
                     </div>
                 
-            </lightning-card>
     </template>
+</div>
     <template if:false={items}>
         <p>No Items found for this account.</p>
     </template>

@@ -1,0 +1,23 @@
+<template>
+    <lightning-card title="Mobile Wallet" icon-name="standard:payment_gateway">
+</lightning-card>
+
+  <lightning-card>
+  <p style="text-align: center;">In order to complete your transaction, we will transfer you over to Adyen's secure servers.
+  </p>
+  &nbsp;
+  <lightning-combobox
+  name="options"
+  placeholder="Select your Bank"
+  value={selectedOption}
+  options={options}
+  onchange={handleOptionChange}>
+</lightning-combobox>
+
+
+<br/> &nbsp;
+    <lightning-button variant="success" class="slds-align_absolute-center" value="" label="Login"></lightning-button>
+  </lightning-card>
+
+
+</template>

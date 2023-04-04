@@ -11,7 +11,7 @@
                 <lightning-button variant="brand" label="Display Tables" onclick={showComp1} >
     
                 </lightning-button> 
-      </div>
+      </div><br/>
                <template if:true={isShowModal}>    
                   <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
                      <div class="slds-modal__container">
@@ -31,20 +31,22 @@
                  
           
             <template if:true={showModalBox1}>
-               <div class="backgroundImg" style={getBackgroundImage}>
+             
+               <div class="backgroundImg" >
                   <div class="slds-grid slds-wrap">
                      <template for:each={getTab} for:item="tab">
                          <div key={tab.Id} class="slds-col slds-size_1-of-2 slds-p-around_medium">
             
-                        <lightning-card icon-name="standard:identifier">
+                        <lightning-card icon-name="standard:scan_card">
                            <p slot="title" >
                               <b>Name : {tab.Name}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                      
-                                 <lightning-button label="Delete Table" variant="destructive-text" 
-                                    onclick={handleDelete} value={tab.Id}></lightning-button>
+                                 <lightning-button label="Delete " variant="destructive" 
+                                    onclick={handleDelete} value={tab.Id} ></lightning-button>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                              <!-- <lightning-button label="Edit Table" variant="destructive-text" 
-                                 onclick={handleUpdate} ></lightning-button>-->
+                               <lightning-button label="Edit " variant="Success" 
+                                 onclick={handleUpdate} value={tab.Id} >
+                              </lightning-button>
                            </p>
                            <div class="slds-grid slds-no-flex">
                                   &nbsp;&nbsp;
@@ -59,14 +61,20 @@
                               </div>
                               <div class="slds-size_1-of-2">
                                     <b>Capacity : {tab.CCXR_Capacity__c}</b><br/>
-                                    <b>Employee Name</b>  : {tab.CCXR_Restaurant_Employee__c}<br/>
-                       
+                                    <b>Assigned Employee  : {tab.Assigned_Waiter__c}</b>
+                                  <!--   <b>Assigned Employee </b>  : {tab.CCXR_Restaurant_Employee__r.CCXR_Name__c}<br/>
+                                  <template for:each={tab.CCXR_Restaurant_Employees__r} for:item="cont">
+                                       <div key={cont.Id} class="slds-hint-parent">
+                                          <b>Employee Name</b> :{cont.CCXR_Restaurant_Employee__r.CCXR_Name__c} 
+                                       </div>
+                                   </template>--> 
                               </div>  
              
                            </div>
                            <p slot="footer">
-                               <b>
-                                   Status : &nbsp;&nbsp; {tab.CCXR_Table_Status__c}
+                              <b> Status : </b>
+                               <b class={tab.CCXR_Table_Status__c}>
+                                  &nbsp;&nbsp; {tab.CCXR_Table_Status__c}
                               </b>
                  
                            </p>  
@@ -79,4 +87,5 @@
             </template>
         
    </lightning-card>
+   
 </template>

@@ -3,12 +3,12 @@ import { CurrentPageReference } from 'lightning/navigation';
 import { decodeDefaultFieldValues } from 'lightning/pageReferenceUtils';
 import BackgroundImg from '@salesforce/resourceUrl/logo';
 //1.veg
-import vegStarters from '@salesforce/apex/GetVegItems.vegStarterItems';
-import vegSoups from '@salesforce/apex/GetVegItems.vegSoupItems';
-import vegRice from '@salesforce/apex/GetVegItems.vegRiceItems';
-import vegCurries from '@salesforce/apex/GetVegItems.vegCurryItems';
-import vegDesserts from '@salesforce/apex/GetVegItems.vegDessertItems';
-import Roti from '@salesforce/apex/GetVegItems.rotiItems';
+import vegStarters from '@salesforce/apex/GetNonVegItems.nonVegStarterItems';
+import vegSoups from '@salesforce/apex/GetNonVegItems.nonVegSoupItems';
+import vegRice from '@salesforce/apex/GetNonVegItems.nonVegCurryItems';
+import vegCurries from '@salesforce/apex/GetNonVegItems.nonVegRiceItems';
+import vegDesserts from '@salesforce/apex/GetNonVegItems.nonVegDessertItems';
+import Roti from '@salesforce/apex/GetNonVegItems.nonVegRotiItems';
 //2.Non-Veg
 import nonVegStarters from '@salesforce/apex/GetNonVegItems.nonVegStarterItems';
 import nonVegSoups from '@salesforce/apex/GetNonVegItems.nonVegSoupItems';

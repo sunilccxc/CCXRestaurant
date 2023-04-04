@@ -3,7 +3,7 @@ public with sharing class customTable
     @AuraEnabled(cacheable = true)
     public static List<CCXR_Chef_Orders__c> getAllAccounts(){
         List<CCXR_Chef_Orders__c> accList =[Select Id,CCXR_Order_Id__c,CCXR_Quantity__c,Assignedtochef__r.Name,
-        CCXR_Items_ID__c,CCXR_Items_ID__r.CCXR_Item_Name__c,CCXR_Table__c,Order_status__c,button__c,button1__c,Assignedtochef__c,CCXR_Accepted_By_Chef__c,CCXR_Order_Id__r.Name FROM CCXR_Chef_Orders__c];
+        CCXR_Items_ID__c,CCXR_Items_ID__r.CCXR_Item_Name__c,CCXR_Table__c,Order_status__c,button__c,button1__c,Assignedtochef__c,CCXR_Accepted_By_Chef__c,CCXR_Order_Id__r.Name FROM CCXR_Chef_Orders__c where Order_status__c='Pending' or Order_status__c='Preparing' or Order_status__c='Ready'];
         return accList;
     }
     @AuraEnabled

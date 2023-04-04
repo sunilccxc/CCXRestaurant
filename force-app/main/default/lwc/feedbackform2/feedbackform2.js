@@ -4,10 +4,12 @@ import { getObjectInfo } from 'lightning/uiObjectInfoApi';
 import feedback_obj from '@salesforce/schema/CCXR_Feedback__c';
 import foodquality from '@salesforce/schema/CCXR_Feedback__c.CCXR_Food_Quality__c';
 import servicequality from '@salesforce/schema/CCXR_Feedback__c.CCXR_Service_Quality__c';
-import table from '@salesforce/schema/CCXR_Feedback__c.CCXR_Table__c';
+import suggestions from '@salesforce/schema/CCXR_Feedback__c.CCXR_Suggestions__c';
+
 import order from '@salesforce/schema/CCXR_Feedback__c.CCXR_Order__c';
 import getfeedback from '@salesforce/apex/feedbackcontroller.feedbackRecMethod';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent'; 
+import imageUrl from '@salesforce/resourceUrl/logo';
 
 export default class FeedbackForm2 extends LightningElement 
 {
@@ -15,17 +17,22 @@ export default class FeedbackForm2 extends LightningElement
     @track options2 = [];
     @track selectedValue1 = foodquality;
     @track selectedValue2 = servicequality;
-    @track name = table;
-    @track ord = order;
    
-    @track imageUrl='https://commercecx125-dev-ed--c.develop.vf.force.com/resource/1678508119000/finallogo';
+    @track ord = order;
+    @track suggest = suggestions;
+    disableButton = false;
+    @api ordername;
+    @api order;
+   
+    @track imageUrl1= imageUrl;
     feedback = {
 
-        CCXR_Table__c : this.name,
+      
         CCXR_Order__c : this.ord,
         CCXR_Food_Quality__c :this.selectedValue1,
 
-        CCXR_Service_Quality__c:this.selectedValue2
+        CCXR_Service_Quality__c:this.selectedValue2,
+        CCXR_Suggestions__c: this.suggestions
     }
 
     
@@ -54,23 +61,24 @@ export default class FeedbackForm2 extends LightningElement
     }
     handleChange2(event) {
         this.feedback.CCXR_Service_Quality__c = event.target.value;
+       
         console.log(this.feeedback.CCXR_Service_Quality__c);
     }
 
-    handelNamechange(event){
-        this.feedback.CCXR_Table__c = event.target.value;
-     
-    }
-    handelorderchange(event){
-        this.feedback.CCXR_Order__c = event.target.value;
-     
+  
+   
+    handlesuggestion(event)
+    {
+        this.feedback.CCXR_Suggestions__c = event.target.value;
+
     }
 
     createfeedbackRec() {
         console.log(this.feedback.CCXR_Food_Quality__c);
         console.log(this.feedback.CCXR_Service_Quality__c);
         console.log(this.feedback.CCXR_Order__c);
-        console.log(this.feedback.CCXR_Table__c);
+        this.feedback.CCXR_Order__c = this.order;
+        alert( this.feedback.CCXR_Order__c);
         getfeedback({ accRec : this.feedback })
         
         .then(() => {
@@ -91,6 +99,7 @@ export default class FeedbackForm2 extends LightningElement
                   })
               );
           });
+          this.disableButton= true;
     
 
 

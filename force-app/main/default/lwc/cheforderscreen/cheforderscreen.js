@@ -33,7 +33,7 @@ export default class Cheforderscreen extends LightningElement{
       this.chefidd = event.target.value;
     }
     handleButtonClick(event) {
-      alert('loh');
+      alert('ul');
       this.button1v=true;
       this.button2v=false;
       this.itemId = event.target.value;

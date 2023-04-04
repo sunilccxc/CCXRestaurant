@@ -1,0 +1,60 @@
+<template>
+
+<lightning-card>
+    <b><div style="text-align:center;">  <h1 style=" font-size: xx-large ;color:rgb(255, 38, 0) ">Customer Payment</h1></div></b>
+
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col">
+          <span>
+
+            
+        
+            <lightning-radio-group
+                label="Select an Option"
+                options={options}
+                value={selectedValue}
+                onchange={handleChange}
+            ></lightning-radio-group>
+           
+          </span>
+        </div>
+
+        <div class="slds-col">
+
+          <span>
+            <h1 style=" font-size: xx-large ;color:rgb(255, 38, 0) ;;text-align:center">Summary</h1>
+
+            <lightning-record-view-form
+              object-api-name="CCXR_Order__c"
+            record-id={order}>
+
+    
+             <h2 style=" font-size: xx-Medium ;text-align:center ">Net Total</h2>
+            <lightning-output-field field-name={Nettotal} variant="label-hidden" style="text-align:Center"> </lightning-output-field> 
+
+            </lightning-record-view-form>
+          </span>
+        </div>
+
+       
+    </div>
+    <br/>
+    <template if:true={showUPI}>
+        <c-upipayment order={order}></c-upipayment>
+    </template>
+
+    <template if:true={showCredit}>
+        <c-cardinput></c-cardinput>
+    </template>
+
+    <template if:true={showNet}>
+        <c-netbanking></c-netbanking>
+    </template>
+
+    <template if:true={showMob}>
+        <c-mobilewallet></c-mobilewallet>
+    </template>
+
+    
+</lightning-card>
+</template>

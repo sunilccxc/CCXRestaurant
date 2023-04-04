@@ -1,0 +1,9 @@
+<aura:component implements="flexipage:availableForAllPageTypes,lightning:isUrlAddressable" access="global">
+   <aura:attribute type="id" name="order"/>ordername
+    <aura:attribute type="id" name="ordername"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>    
+  
+    <c:billingscreen order="{!v.order}" ordername="{!v.ordername}"/>
+   
+     
+</aura:component>

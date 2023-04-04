@@ -2,8 +2,8 @@
 
   
   <lightning-card>
-    
-   <b><div style="text-align:center;"> <h1 style=" font-size: xx-large ">Bill</h1></div></b>
+    <c-ccxheadercmp></c-ccxheadercmp>
+   <b><div style="text-align:center;"> <h1 style=" font-size: xx-large; color:rgb(255, 38, 0) "> Customer Bill</h1></div></b>
    <br/>
    <br/>
   
@@ -78,6 +78,12 @@
   </lightning-layout>
   </lightning-record-view-form>
   
+
+  <lightning-button label="Go to Payment" variant="success" class="slds-align_absolute-center" onclick={gotopayment}></lightning-button>
+  
+  &nbsp;&nbsp;
+  <lightning-button variant="success" class="slds-align_absolute-center" label="Go to FeedBack" onclick={gotoFeedback}></lightning-button>
+
   </lightning-card>
                 
 </template>
