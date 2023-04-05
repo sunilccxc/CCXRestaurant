@@ -67,13 +67,15 @@ export default class displayItemsScreen extends NavigationMixin(LightningElement
     } 
     generateBill()
     {
-        getCustomerTableStatusData1({csn :this.id})  
-        getCustomerTableStatusData({csn :this.id}) 
+        //getCustomerTableStatusData({csn :this.id})  
+        getCustomerTableStatusData1({csn :this.id}) 
         .then(result=>{
             this.data=result;
             this.order=this.data.Id;
             alert(this.order);
             alert(this.data.Name);
+            alert(this.data.CCXR_Order_Status__c);
+            if(this.data.CCXR_Order_Status__c=='Completed'){
            this[NavigationMixin.Navigate]({
             type: "standard__component",
             attributes: {
@@ -84,7 +86,7 @@ export default class displayItemsScreen extends NavigationMixin(LightningElement
                 c__ordername:this.data.Name
             }
         });
-           
+    }
         })
       
        

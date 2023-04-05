@@ -68,15 +68,46 @@ public with sharing class Order_Creation
         }
         @AuraEnabled
     
-        public static void  getCustomerTableStatusData1(id csn)
+        public static CCXR_Order__c  getCustomerTableStatusData1(id csn)
         {
-          
+          boolean status=true;
             CCXR_Order__c cts = [select id,Name,CCXR_Order_Status__c from CCXR_Order__c where CCXR_Customer_Table_Status__r.id=:csn and CCXR_Order_Status__c='Progress' ];
-            cts.CCXR_Order_Status__c='Completed';
-            update cts;
-         
+                                      
+            
+    list<CCXR_Order_Line_Item__c>  orderst=[select CCXR_OrderLineItem_Status__c,CCXR_Order_ID__r.CCXR_Order_Status__c,
+                     CCXR_Order_ID__r.CCXR_Customer__c, CCXR_Order_ID__r.CCXR_Table__c,CCXR_Order_ID__r.Name,
+                     CCXR_Order_ID__r.CCXR_Grand_Total__c,CCXR_Order_ID__r.CCXR_Tax__c,CCXR_Order_ID__r.CCXR_Discount__c,
+                     CCXR_Order_ID__r.CCXR_Net_Total__c,
+                     Name,CCXR_Item_Name__c,CCXR_Quantity__c,CCXR_Price__c,CCXR_Total__c
+                     from CCXR_Order_Line_Item__c
+                     where  
+                      CCXR_Order_ID__C=:cts.id
+                    ];
+            
+            for(CCXR_Order_Line_Item__c oli:orderst)
+            {
+              system.debug(oli.Name);
+                if(oli.CCXR_OrderLineItem_Status__c!='Served')
+                {
+                    System.debug(oli.CCXR_OrderLineItem_Status__c);
+                    status=false;
+                
+                }
+              
+                
+            }
+            system.debug(status);
+           if(status!=false)
+                {
+                    cts.CCXR_Order_Status__c='Completed';
+                    update cts;
+                    
+                }
+         return cts;
         }
 }
 
+/*cts.CCXR_Order_Status__c='Completed';
+            update cts;*/
 /*Order_Creation obj = new Order_Creation();
 obj.createOrderAndOrderLines('a012w000019usWcAAI','a032w00000VJMsBAAX','a002w00000aDNcHAAW',2);*/
