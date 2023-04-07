@@ -1,6 +1,6 @@
 import { LightningElement,track,wire,api } from 'lwc';
-import getEmpList from '@salesforce/apex/EmployeeData.getEmployeeList';
-import getItmList from '@salesforce/apex/EmployeeData.getItemList';
+import getEmpList from '@salesforce/apex/EmployeeDataController.getEmployeeList';
+import getItmList from '@salesforce/apex/EmployeeDataController.getItemList';
 import { NavigationMixin } from 'lightning/navigation';
 
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
@@ -50,14 +50,15 @@ export default class CcxRestaurantManager extends NavigationMixin(LightningEleme
     iconName3;
     iconName4;
     iconName5;
-
+    iconName6;
 
     connectedCallback() {
     this.iconName1 = "standard:home";
     this.iconName2 = "standard:people";
     this.iconName3 = "standard:scan_card";
-    this.iconName4 = "standard:contract_line_item";
+    this.iconName4 = "standard:identifier";
     this.iconName5 = "standard:feedback";
+    this.iconName6 = "standard:record";
     }
 
   columns = [

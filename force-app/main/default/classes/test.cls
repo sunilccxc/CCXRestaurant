@@ -1,11 +1,18 @@
 public class test {
- @AuraEnabled
+  @AuraEnabled(cacheable=true)
     
-        public static CCXR_Order__c  igg()
+        public static list<CCXR_Order_Line_Item__c>  igg1()
         {
-          
-            CCXR_Order__c cts = [select id from CCXR_Order__c limit 1];
-            system.debug(cts.id);
+          list<CCXR_Order_Line_Item__c> cts1=new list<CCXR_Order_Line_Item__c>() ;
+           list<CCXR_Order_Line_Item__c> cts = [select id from CCXR_Order_Line_Item__c where CCXR_Order_Id__r.id='a022w00000nfbCVAAY' ];
+            for(CCXR_Order_Line_Item__c c:cts)
+            {
+                c.CCXR_OrderLineItem_Status__c='Served';
+                cts1.add(c);
+            }
+            update cts1;
+            
             return cts;
         }
+   
 }

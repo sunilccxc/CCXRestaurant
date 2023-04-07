@@ -1,6 +1,6 @@
 import { LightningElement,wire,track } from 'lwc';
 import myStyles from './ccrFeedbackTable.css';
-import getAllFeed from '@salesforce/apex/EmployeeData.getAllFeedback';
+import getAllFeed from '@salesforce/apex/EmployeeDataController.getAllFeedback';
 //import myStyles from '@salesforce/resourceUrl/ccrFeedbackTable';
 import { loadStyle } from 'lightning/platformResourceLoader';
 

@@ -1,9 +1,8 @@
 <template>
     <div class="slds-box ">
-        <lightning-button variant="brand" label="Generate Bill" onclick={generateBill} style="font-size: 20px;"></lightning-button>
-       
+        <lightning-button variant="brand" label="Generate Bill" onclick={generateBill} style="font-size: 20px;margin-right:0px;">
+        </lightning-button>       
         <lightning-tabset class="slds-tabs_default slds-tabs_large">
-
                 <lightning-tab label="Vegetarian" icon-name="standard:customer"
                     alternative-text="Event" size="small" 
                     class="slds-context-bar__label-action slds-truncate"
@@ -12,147 +11,131 @@
                     <lightning-tabset class="slds-context-bar__label-action slds-truncate">
                         <!--1..1. Starters-->
                         <lightning-tab label="Starters" value="Starters" onactive={call1}>
-                                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 38, 0);">
-                                    <template for:each={items} for:item="starter">
-                                        <div key={starter.Id} class="slds-col
-                                            slds-size_1-of-2 slds-p-around_medium">
-                                            <lightning-card class="card-style">
-                                                <h1 slot="title" style="font-size: 14px;font-weight:bolder;">{starter.CCXR_Item_Name__c}</h1>
-                                                <lightning-button variant="brand" style="font-weight: bolder;"
-                                                    label="ADD ITEM" slot="actions" onclick={handleClick} value ={starter.Id}>
-                    
-                                                </lightning-button>
-                                                    <p slot="footer"><b>Price:   </b>  <lightning-icon class="red-icon" variant="error" icon-name="custom:custom17"
-                                                        alternative-text="Event"
-                                                        size="small"></lightning-icon> <b> {starter.CCXR_Price__c}</b>
-                    
+                            <div class="slds-grid slds-wrap" style="background-color: rgb(255, 70, 30);">
+                                <template for:each={items} for:item="starter">
+                                    <div key={starter.Id} class="slds-col
+                                        slds-size_1-of-2 slds-p-around_medium">
+                                        <lightning-card class="card-style">
+                                            <h1 slot="title" style="font-size: 14px;font-weight:bolder;">{starter.CCXR_Item_Name__c}</h1>
+                                            <lightning-button variant="brand" style="font-weight: bolder;"
+                                                label="ADD ITEM" slot="actions" onclick={handleClick} value ={starter.Id}>                
+                                            </lightning-button>
+                                            <p slot="footer"><b>Price:   </b>  <lightning-icon class="red-icon" variant="error" icon-name="custom:custom17"
+                                                alternative-text="Event"
+                                                size="small"></lightning-icon> <b> {starter.CCXR_Price__c}</b>                    
+                                            </p>
+                                            <div class="slds-grid slds-no-flex">
+                                                <div class="slds-size_1-of-2">
+                                                    <p>
+                                                        <img
+                                                            src={starter.Item_Image_Link__c}
+                                                            alt=" "
+                                                            height="60px"
+                                                            width="100px"
+                                                        />
                                                     </p>
-                                                    <div class="slds-grid slds-no-flex">
+                                                </div>
+                                                <div class="slds-size_1-of-2">
+                                                    <b>Preparation Time: {starter.CCXR_Item_Prep_Time__c}<br>
+                                                        Serves: {starter.CCXR_Serves__c}<br>
+                                                        <div class="slds-form_horizontal slds-form slds-grid slds-wrap">
+                                                            <lightning-input style="--lwc-colorLabel: red;" class="slds-size_1-of-1" type="number" label="Quantity:">
+                                                            </lightning-input>                                                    
+                                                        </div>                                                          
+                                                    </b>                                                        
+                                                </div>
+                                            </div>
+                                        </lightning-card>
+                                    </div>
+                                </template>
+                            </div>                    
+                        </lightning-tab>
+                        <!--1.2. Veg Soups-->
+                        <lightning-tab label="Soups" value="Soups" onactive={call1}>
+                            <div class="slds-grid slds-wrap" style="background-color: rgb(255, 70, 30);">
+                                <template for:each={items} for:item="soup">
+                                    <div key={soup.Id} class="slds-col
+                                        slds-size_1-of-2 slds-p-around_medium">
+                                        <lightning-card class="card-style">
+                                            <h1 slot="title" style="font-size: 14px;font-weight:bolder;">{soup.CCXR_Item_Name__c}</h1>
+                                            <lightning-button variant="brand" style="font-weight: bolder;"
+                                                label="ADD ITEM" slot="actions" onclick={handleClick} value ={soup.Id}>                     
+                                            </lightning-button>
+                                            <p slot="footer" style="color:
+                                                black;"><b>Price: </b> <lightning-icon class="style1" icon-name="custom:custom17"
+                                                alternative-text="Event"
+                                                size="small"></lightning-icon> <b> {soup.CCXR_Price__c}</b>
+                                            </p>
+                                            <div class="slds-grid slds-no-flex">
+                                                <div class="slds-size_1-of-2">
+                                                    <p>
+                                                        <img
+                                                            src={soup.Item_Image_Link__c}
+                                                            alt=" "
+                                                            height="60px"
+                                                            width="100px"
+                                                        />
+                                                    </p>
+                                                </div>
+                                                <div class="slds-size_1-of-2">                                
+                                                    <b>Preparation Time: {soup.CCXR_Item_Prep_Time__c}<br>
+                                                        Serves: {soup.CCXR_Serves__c}<br>
+                                                        <div class="slds-form_horizontal slds-form slds-grid slds-wrap">
+                                                            <lightning-input  type="number" label="Quantity:" onchange={handleChange1}></lightning-input>                            
+                                                        </div>
+                                                    </b>     
+                                                </div>
+                                            </div>
+                                        </lightning-card>
+                                    </div>
+                                </template>
+                            </div>
+                        </lightning-tab>
+                        <!--1.3. Veg Rice -->
+                        <lightning-tab label="Rice" value="Rice" onactive={call1}>
+                            <div class="slds-grid slds-wrap" style="background-color: rgb(255, 70, 30);">
+                                <template for:each={items} for:item="rice">
+                                    <div key={rice.Id} class="slds-col
+                                        slds-size_1-of-2 slds-p-around_medium">
+                                        <lightning-card class="card-style">
+                                            <h1 slot="title" style="font-size: 14px;font-weight:bolder;">{rice.CCXR_Item_Name__c}</h1>
+                                            <lightning-button variant="brand" style="font-weight: bolder;"
+                                                label="ADD ITEM" slot="actions" onclick={handleClick} value={rice.Id}>
+                
+                                            </lightning-button>
+                                                <p slot="footer" style="color:
+                                                black;"><b>Price: </b> <lightning-icon icon-name="custom:custom17"
+                                                    alternative-text="Event"
+                                                    size="small"></lightning-icon> <b> {rice.CCXR_Price__c}</b>                
+                                                </p>
+                                                <div class="slds-grid slds-no-flex">
                                                     <div class="slds-size_1-of-2">
                                                         <p>
                                                             <img
-                                                            src={starter.Item_Image_Link__c}
+                                                            src={rice.Item_Image_Link__c}
                                                             alt=" "
                                                             height="60px"
                                                             width="100px"/>
                                                         </p>
                                                     </div>
-                                                    <div class="slds-size_1-of-2">
-                                                        
-                                                        
-                                                            <b>Preparation Time: {starter.CCXR_Item_Prep_Time__c}<br>
-                                                            Serves: {starter.CCXR_Serves__c}<br>
-                                                                    <div class="slds-form_horizontal slds-form slds-grid slds-wrap">
-    
-                                                                        <lightning-input style="--lwc-colorLabel: red;" class="slds-size_1-of-1" type="number" label="Quantity:">
-                                                                        </lightning-input>
-                                                    
-                                                                </div>                                                          
-                                                            </b>                                                        
-                                                    </div>
+                                                <div class="slds-size_1-of-2">                                                                                    
+                                                    <b>Preparation Time: {rice.CCXR_Item_Prep_Time__c}<br>
+                                                        Serves: {rice.CCXR_Serves__c}<br>
+                                                        <div class="slds-form_horizontal slds-form slds-grid slds-wrap">
+                                                            <lightning-input class="input" type="number" label="Quantity: " onchange={handleChange1}></lightning-input>                                                                                                                        
+                                                        </div>                                                
+                                                    </b>                                    
                                                 </div>
-                                            </lightning-card>
-                                        </div>
-                                    </template>
-                                </div>                    
-                        </lightning-tab>
-            <!--1.2. Veg Soups-->
-            <lightning-tab label="Soups" value="Soups" onactive={call1}>
-                <div class="slds-grid slds-wrap" style="background-color: rgb(255, 38, 0);">
-                        <template for:each={items} for:item="soup">
-                            <div key={soup.Id} class="slds-col
-                                slds-size_1-of-2 slds-p-around_medium">
-                                <lightning-card class="card-style">
-
-                                   <h1 slot="title" style="font-size: 14px;font-weight:bolder;">{soup.CCXR_Item_Name__c}</h1>
-                                    <lightning-button variant="brand" style="font-weight: bolder;"
-                                        label="ADD ITEM" slot="actions" onclick={handleClick} value ={soup.Id}> 
-        
-                                    </lightning-button>
-                                        <p slot="footer" style="color:
-                                        black;"><b>Price: </b> <lightning-icon class="style1" icon-name="custom:custom17"
-                                            alternative-text="Event"
-                                            size="small"></lightning-icon> <b> {soup.CCXR_Price__c}</b>
-        
-                                        </p>
-                                        <div class="slds-grid slds-no-flex">
-                                        <div class="slds-size_1-of-2">
-                                            <p>
-                                                <img
-                                                src={soup.Item_Image_Link__c}
-                                                alt=" "
-                                                height="60px"
-                                                width="100px"/>
-                                            </p>
-                                        </div>
-                                        <div class="slds-size_1-of-2">                                
-                                                <b>Preparation Time: {soup.CCXR_Item_Prep_Time__c}<br>
-                                                Serves: {soup.CCXR_Serves__c}<br>
-                                                <div class="slds-form_horizontal slds-form slds-grid slds-wrap">
-                                                    <lightning-input  type="number" label="Quantity:" onchange={handleChange1}></lightning-input>
-                                                        
-                                                        
-                                                </div>
-                                                </b>     
-                                        </div>
+                                            </div>
+                                        </lightning-card>
                                     </div>
-                                </lightning-card>
-                            </div>
-                        </template>
-                    </div>
-            </lightning-tab>
-
-
-            <!--1.3. Veg Rice -->
-            <lightning-tab label="Rice" value="Rice" onactive={call1}>
-                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 38, 0);">
-                        <template for:each={items} for:item="rice">
-                            <div key={rice.Id} class="slds-col
-                                slds-size_1-of-2 slds-p-around_medium">
-                                <lightning-card class="card-style">
-                                    <h1 slot="title" style="font-size: 14px;font-weight:bolder;">{rice.CCXR_Item_Name__c}</h1>
-                                    <lightning-button variant="brand" style="font-weight: bolder;"
-                                        label="ADD ITEM" slot="actions" onclick={handleClick} value={rice.Id}>
-        
-                                    </lightning-button>
-                                        <p slot="footer" style="color:
-                                        black;"><b>Price: </b> <lightning-icon icon-name="custom:custom17"
-                                            alternative-text="Event"
-                                            size="small"></lightning-icon> <b> {rice.CCXR_Price__c}</b>
-        
-                                        </p>
-                                        <div class="slds-grid slds-no-flex">
-                                        <div class="slds-size_1-of-2">
-                                            <p>
-                                                <img
-                                                src={rice.Item_Image_Link__c}
-                                                alt=" "
-                                                height="60px"
-                                                width="100px"/>
-                                            </p>
-                                        </div>
-                                        <div class="slds-size_1-of-2">
-                                            
-                                            
-                                                <b>Preparation Time: {rice.CCXR_Item_Prep_Time__c}<br>
-                                                Serves: {rice.CCXR_Serves__c}<br>
-                                                <div class="slds-form_horizontal slds-form slds-grid slds-wrap">
-                                                    <lightning-input class="input" type="number" label="Quantity: " onchange={handleChange1}></lightning-input>
-                                                        
-                                                        
-                                                    </div>                                                </b>
-                                            
-                                        </div>
-                                    </div>
-                                </lightning-card>
-                            </div>
-                        </template>
-                        </div>
-            </lightning-tab>
+                                </template>
+                                </div>
+                    </lightning-tab>
 
             <!--1.4 Veg Curries-->
             <lightning-tab label="Curry" value="Curries" onactive={call1}>
-                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 38, 0);">
+                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 70, 30);">
                         <template for:each={items} for:item="curry">
                             <div key={curry.Id} class="slds-col
                                 slds-size_1-of-2 slds-p-around_medium">
@@ -199,7 +182,7 @@
             </lightning-tab>
 
             <lightning-tab label="Roti" value="Roti" onactive={call1}>
-                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 38, 0);">
+                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 70, 30);">
                         <template for:each={items} for:item="roti">
                             <div key={roti.Id} class="slds-col
                                 slds-size_1-of-2 slds-p-around_medium">
@@ -246,7 +229,7 @@
 
             <!--1.5 Desserts -->
             <lightning-tab label="Desserts" value="Desserts" onactive={call1}>
-                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 38, 0);">
+                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 70, 30);">
                         <template for:each={items} for:item="dessert">
                             <div key={dessert.Id} class="slds-col
                                 slds-size_1-of-2 slds-p-around_medium">
@@ -297,7 +280,7 @@
         <lightning-tabset >
             <!--2.1 Non-Veg Starters-->
             <lightning-tab label="Starters" value="Starters" onactive={call1}>
-                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 38, 0);">
+                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 70, 30);">
                         <template for:each={items} for:item="nonVegStarter">
                             <div key={nonVegStarter.Id} class="slds-col
                                 slds-size_1-of-2 slds-p-around_medium">
@@ -341,7 +324,7 @@
 
             <!--2.2 Non-Veg Soups-->
             <lightning-tab label="Soups" value="Soups" onactive={call1}>
-                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 38, 0);">
+                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 70, 30);">
                         <template for:each={items} for:item="nonVegSoup">
                             <div key={nonVegSoup.Id} class="slds-col
                                 slds-size_1-of-2 slds-p-around_medium">
@@ -390,7 +373,7 @@
 
             <!--2.3 Non-Veg Rice-->
             <lightning-tab label="Rice" value="Rice" onactive={call1}>
-                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 38, 0);">
+                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 70, 30);">
                         <template for:each={items} for:item="nonVegRice">
                             <div key={nonVegRice.Id} class="slds-col
                                 slds-size_1-of-2 slds-p-around_medium">
@@ -437,7 +420,7 @@
 
             <!--2.4 Non-Veg Curries-->
             <lightning-tab label="Curry" value="Curries" onactive={call1}>
-                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 38, 0);">
+                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 70, 30);">
                         <template for:each={items} for:item="nonVegCurry">
                             <div key={nonVegCurry.Id} class="slds-col
                                 slds-size_1-of-2 slds-p-around_medium">
@@ -483,7 +466,7 @@
             </lightning-tab>
             <!--2.5 Roti-->
             <lightning-tab label="Roti" value="Roti" onactive={call1}>
-                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 38, 0);">
+                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 70, 30);">
                         <template for:each={items} for:item="nonVegRoti">
                             <div key={nonVegRoti.Id} class="slds-col
                                 slds-size_1-of-2 slds-p-around_medium">
@@ -530,7 +513,7 @@
             
             <!--2.6 Non-veg Desserts-->
             <lightning-tab label="Desserts"  value="Desserts" onactive={call1}>
-                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 38, 0);">
+                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 70, 30);">
                         <template for:each={items} for:item="nonVegDessert">
                             <div key={nonVegDessert.Id} class="slds-col
                                 slds-size_1-of-2 slds-p-around_medium">
@@ -578,13 +561,13 @@
         </lightning-tabset>
     </lightning-tab>
     <!--3. Beverages-->
-    <lightning-tab label="Beverages" icon-name="custom:custom48"
+    <lightning-tab label="Beverage" icon-name="custom:custom48"
     alternative-text="Event"
     size="xx-small"  value="Beverage" onactive={call}>
         <lightning-tabset>
             <!--3.1 Water-->
             <lightning-tab label="Water"  value="Water" onactive={call1}>
-                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 38, 0);">
+                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 70, 30);">
                         <template for:each={items} for:item="water">
                             <div key={water.Id} class="slds-col
                                 slds-size_1-of-2 slds-p-around_medium">
@@ -630,7 +613,7 @@
             </lightning-tab>
             <!--3.2 Milk Shakes-->
             <lightning-tab label="MilkShakes" value="Milkshakes" onactive={call1}>
-                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 38, 0);">
+                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 70, 30);">
                         <template for:each={items} for:item="milkshake">
                             <div key={milkshake.Id} class="slds-col
                                 slds-size_1-of-2 slds-p-around_medium">
@@ -676,7 +659,7 @@
             </lightning-tab>
             <!--3.3 Ice Creams-->
             <lightning-tab label="Ice Creams" value="Ice Creams" onactive={call1}>
-                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 38, 0);">
+                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 70, 30);">
                         <template for:each={items} for:item="icecream">
                             <div key={icecream.Id} class="slds-col
                                 slds-size_1-of-2 slds-p-around_medium">
@@ -722,7 +705,7 @@
             </lightning-tab>
             <!--3.4 Sweets-->
             <lightning-tab label="Sweets" value="Sweets" onactive={call1}>
-                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 38, 0);">
+                    <div class="slds-grid slds-wrap" style="background-color: rgb(255, 70, 30);">
                         <template for:each={items} for:item="sweet">
                             <div key={sweet.Id} class="slds-col
                                 slds-size_1-of-2 slds-p-around_medium">

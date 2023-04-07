@@ -55,7 +55,7 @@
         <template for:each={itmList} for:item="itm">
             <div key={itm.Id} class="slds-col slds-size_1-of-2 slds-p-around_medium">
                    
-                <lightning-card  icon-name="standard:identifier">
+                <lightning-card  icon-name="standard:identifier" onmouseover={handleMouseOver}>
                             <p slot="title" >
                                 
                                 <b>Name : {itm.CCXR_Item_Name__c}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

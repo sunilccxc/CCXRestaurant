@@ -49,8 +49,9 @@ public with sharing class Order_Creation
              orderlineitem.CCXR_Item_ID__c = itemid;
             orderlineitem.CCXR_Quantity__c = quantity;
             orderlineitem.CCXR_Item_Category__c= item.CCXR_Item_Category__c;
-            orderlineitem.CCXR_Sub_Category__c=item.CCXR_Item_SubCategory__c;
+            orderlineitem.CCXR_Item_SubCategory__c=item.CCXR_Item_SubCategory__c;
             insert orderlineitem;
+        System.debug('OLI Successfully inserted, OLI Id is: ' + neworderid);
    
            
                    

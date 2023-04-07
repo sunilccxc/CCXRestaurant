@@ -37,7 +37,7 @@
                      <template for:each={getTab} for:item="tab">
                          <div key={tab.Id} class="slds-col slds-size_1-of-2 slds-p-around_medium">
             
-                        <lightning-card icon-name="standard:scan_card">
+                        <lightning-card icon-name="standard:scan_card" onmouseover={handleMouseOver}>
                            <p slot="title" >
                               <b>Name : {tab.Name}</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                      

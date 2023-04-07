@@ -1,9 +1,10 @@
 import { LightningElement,track,wire,api } from 'lwc';
-import getEmpList from '@salesforce/apex/EmployeeData.getEmployeeList';
-import deleteRecordById from '@salesforce/apex/EmployeeData.deleteEmp';
+import getEmpList from '@salesforce/apex/EmployeeDataController.getEmployeeList';
+import deleteRecordById from '@salesforce/apex/EmployeeDataController.deleteEmp';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 //import BackgroundImg from '@salesforce/resourceUrl/logo2';
 import { NavigationMixin } from "lightning/navigation";
+import {refreshApex} from '@salesforce/apex';
 
 export default class CcrRS1 extends NavigationMixin(LightningElement )
 { 
@@ -11,6 +12,7 @@ export default class CcrRS1 extends NavigationMixin(LightningElement )
     @track error ;
     @track empList;
     @api drecordId;
+    @track i=0;
     @api upRecordIDs;
     columns = [
         { id:'1',label: 'Name', fieldName: 'CCXR_Name__c' },
@@ -20,18 +22,14 @@ export default class CcrRS1 extends NavigationMixin(LightningElement )
         { id:'5',label: 'Status', fieldName: 'CCXR_Chef_Statuses__r.CCXR_Chef_Current_Status__c' }
        ];
 
-       @wire(getEmpList,{})
-       wiredColumns({
-           error,
-           data
-       }) {
-           if (data) {
-               this.empList = data;
-           } else if(error) {
-               this.error = error;
-           }
+       
+       @wire(getEmpList,{ } )
+       wiredColumns(result)
+       {
+         this.wiredData = result;
+         this.empList = result.data;
+         this.errors = result.error;
        }
-
       /* get getBackgroundImage(){
         return `background-image:url("${this.imageUrl}")`;
     }*/
@@ -43,6 +41,7 @@ export default class CcrRS1 extends NavigationMixin(LightningElement )
         
         deleteRecordById({selRecordId:this.drecordId})
           .then(() => {
+           
                 this.dispatchEvent(
                     new ShowToastEvent({
                         title: 'Success',
@@ -50,6 +49,7 @@ export default class CcrRS1 extends NavigationMixin(LightningElement )
                         variant: 'success'
                     })
                 );
+                return refreshApex(this.wiredData);
             })
             .catch(error => {
                 this.dispatchEvent(
@@ -74,10 +74,19 @@ export default class CcrRS1 extends NavigationMixin(LightningElement )
                     objectApiName: 'CCXR_Restaurant_Employee__c',
                     actionName: 'edit'
                 },
+                
             });
         
+            this.i=0
             
-            
+        }
+        handleMouseOver() {
+            if(this.i >= 1)
+            {
+                return refreshApex(this.wiredData);
+            }
+            this.i++;
+            console.log(this.i)
         }
     
     

@@ -1,7 +1,7 @@
 import { LightningElement,api,wire } from 'lwc';
 //import BackgroundImg from '@salesforce/resourceUrl/logo';
 import specialItems from '@salesforce/apex/GetSpecialItems.getTodaySpecialMenu';
-import createOrderAndOrderLines from '@salesforce/apex/Order_Creation.createOrderAndOrderLines';
+import createOrderAndOrderLines from '@salesforce/apex/Order_CreationController.createOrderAndOrderLines';
 export default class DisplayItems extends LightningElement {
 /*imageUrl = BackgroundImg;
 

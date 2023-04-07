@@ -1,6 +1,6 @@
 import { LightningElement,track,wire,api } from 'lwc';
-import getEmpList from '@salesforce/apex/EmployeeData.getEmployeeList';
-import deleteRecordById from '@salesforce/apex/EmployeeData.deleteEmp';
+import getEmpList from '@salesforce/apex/EmployeeDataController.getEmployeeList';
+import deleteRecordById from '@salesforce/apex/EmployeeDataController.deleteEmp';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 

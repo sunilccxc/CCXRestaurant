@@ -1,5 +1,6 @@
-import { LightningElement ,track,api} from 'lwc';
+import { LightningElement ,track,wire,api} from 'lwc';
 import ordernettotal from '@salesforce/schema/CCXR_Order__c.CCXR_Net_Total__c';
+import setorderstatus from '@salesforce/apex/ReceiptsDataController.setorderstatus';
 
 export default class Upi extends LightningElement {
     @api order;
@@ -9,7 +10,10 @@ export default class Upi extends LightningElement {
     @track showNet = false;
     @track showMob = false;
     @track selectedValue;
+
+
     Nettotal = ordernettotal;
+  
     options = [
         { label: 'UPI', value: 'UPI' },
         { label: 'Credit/Debit Card', value: 'Credit/Debit Card' },
@@ -49,5 +53,12 @@ export default class Upi extends LightningElement {
                 this.showUPI=false;
             }
     }
-    
+    onchange(event) 
+    { 
+            if(event.target.checked)
+            {
+                setorderstatus({oid:this.order});
+            }
+           
+    }
 }

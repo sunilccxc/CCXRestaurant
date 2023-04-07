@@ -1,5 +1,12 @@
+/*
+* Author : Jyothi Nandaluri
+ * Creation Date : 11/03/2023, 3:14 pm	
+ * Last Modification : 27/03/2023, 12:01 pm
+ * Purpose : To retrieve the items data in the items object. 
+*/
 public with sharing class GetItems {
     @AuraEnabled(cacheable=true)
+    //To retreive the data from items object.
     public static List<CCXR_Items__c> getMenuItems(string cat, string sub)
     {
         List<CCXR_Items__c> items=[SELECT id,CCXR_Item_Name__c,CCXR_Price__c,

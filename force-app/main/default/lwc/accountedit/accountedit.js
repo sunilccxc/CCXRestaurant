@@ -1,5 +1,5 @@
 import { LightningElement, wire, api } from 'lwc';
-import lwcAddEditButtonToTable from '@salesforce/apex/customTable.getAllAccounts';
+import lwcAddEditButtonToTable from '@salesforce/apex/Chefscreencontroller.getAllAccounts';
 import { NavigationMixin } from 'lightning/navigation';
     const columns = [
         {

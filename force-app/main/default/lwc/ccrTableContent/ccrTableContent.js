@@ -1,17 +1,18 @@
 import { LightningElement,track,api,wire } from 'lwc';
-import deleteTables from '@salesforce/apex/EmployeeData.deleteTable';
-import getTables from '@salesforce/apex/EmployeeData.getTableData1';
+import deleteTables from '@salesforce/apex/EmployeeDataController.deleteTable';
+import getTables from '@salesforce/apex/EmployeeDataController.getTableData1';
 //import BackgroundImg from '@salesforce/resourceUrl/logo2';
 import { NavigationMixin } from "lightning/navigation";
-
+import {refreshApex} from '@salesforce/apex';
 export default class CcrTableContent extends NavigationMixin(LightningElement )
 {
     //imageUrl = BackgroundImg;
     @track getTab;
     @api drecordId;
     @api upRecordIDs;
-    @track isShowModal = false;
+    @track i=0;
 
+    @track isShowModal = false;
     showModalBox() {  
         this.isShowModal = true;
     }
@@ -24,19 +25,15 @@ export default class CcrTableContent extends NavigationMixin(LightningElement )
     showComp1() {
         this.showModalBox1 = true;
     }
-
+    @wire(getTables,{ } )
+    wiredColumns(result)
+    {
+      this.wiredData = result;
+      this.getTab = result.data;
+      this.errors = result.error;
+    }
     
-    @wire(getTables)
-    WiredItems({
-         error,
-         data
-     }) {
-         if (data) {
-             this.getTab = data;
-         } else if(error) {
-             this.error = error;
-         }
-     }
+    
 
     /* get getBackgroundImage(){
         return `background-image:url("${this.imageUrl}")`;
@@ -54,6 +51,7 @@ export default class CcrTableContent extends NavigationMixin(LightningElement )
                             variant: 'success'
                         })
                     );
+                    return refreshApex(this.wiredData);
                 })
                 .catch(error => {
                     this.dispatchEvent(
@@ -64,7 +62,7 @@ export default class CcrTableContent extends NavigationMixin(LightningElement )
                         })
                     );
                 });
-                
+    
         }
         
        
@@ -82,8 +80,16 @@ export default class CcrTableContent extends NavigationMixin(LightningElement )
                 },
             });
         
+            this.i=0
             
-            
+        }
+        handleMouseOver() {
+            if(this.i >= 1)
+            {
+                return refreshApex(this.wiredData);
+            }
+            this.i++;
+            console.log(this.i)
         }
             
        

@@ -7,7 +7,7 @@ import ordergrandtotal from '@salesforce/schema/CCXR_Order__c.CCXR_Grand_Total__
 import ordertax from '@salesforce/schema/CCXR_Order__c.CCXR_Tax__c';
 import orderdiscount from '@salesforce/schema/CCXR_Order__c.CCXR_Discount__c';
 import ordernettotal from '@salesforce/schema/CCXR_Order__c.CCXR_Net_Total__c';
-import displayoederlineitems from '@salesforce/apex/getorderstatuses.orderstatuses'; 
+import displayoederlineitems from '@salesforce/apex/getorderstatusescontroller.orderstatuses'; 
 
 import { NavigationMixin } from 'lightning/navigation';
 
@@ -19,6 +19,7 @@ export default class Billingscreen extends NavigationMixin(LightningElement) {
     @track error  ;
     @track Orderlineitems ;
     orders;
+    @api token;
     @api order;
     @api ordername;
     @track isShowModal =false;
@@ -58,8 +59,9 @@ export default class Billingscreen extends NavigationMixin(LightningElement) {
             this.Orderlineitems = this.data;
             alert( this.Orderlineitems);
             
-        
-           
+        alert(this.token);
+        alert(this.order); 
+        alert(this.ordername);
      
         
             

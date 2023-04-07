@@ -10,7 +10,7 @@
             <template for:each={empList} for:item="emp">
                 <div key={emp.Id} class="slds-col slds-size_1-of-2 slds-p-around_small">
                    
-                    <lightning-card icon-name="standard:people">
+                    <lightning-card icon-name="standard:people" onmouseover={handleMouseOver}>
                         <h3 slot="title">
                             <b>Emp Name : {emp.CCXR_Name__c}</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <lightning-button label="Delete " variant="destructive" 

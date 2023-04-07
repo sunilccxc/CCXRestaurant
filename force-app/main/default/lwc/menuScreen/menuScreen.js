@@ -1,11 +1,11 @@
 import { LightningElement,api,wire,track } from 'lwc';
 import { NavigationMixin } from 'lightning/navigation';
 //import BackgroundImg from '@salesforce/resourceUrl/logo2';
-import createOrderAndOrderLines from '@salesforce/apex/Order_Creation.createOrderAndOrderLines';
+import createOrderAndOrderLines from '@salesforce/apex/Order_CreationController.createOrderAndOrderLines';
 //1.veg
 import menuItems from '@salesforce/apex/GetItems.getMenuItems';
-import getCustomerTableStatusData from '@salesforce/apex/Order_Creation.getCustomerTableStatusData';
-import getCustomerTableStatusData1 from '@salesforce/apex/Order_Creation.getCustomerTableStatusData1';
+import getCustomerTableStatusData from '@salesforce/apex/Order_CreationController.getCustomerTableStatusData';
+import getCustomerTableStatusData1 from '@salesforce/apex/Order_CreationController.getCustomerTableStatusData1';
 
 
 export default class displayItemsScreen extends NavigationMixin(LightningElement) {
@@ -23,16 +23,6 @@ export default class displayItemsScreen extends NavigationMixin(LightningElement
     @api table;
     @api cname;
     @api ordername;
-    /*@wire(vegStarters,{})
-    wiredContacts({ error, data }) {
-        if (data) {
-            this.contacts = data;
-            this.errors = undefined;
-        } else if (error) {
-            console.error=error;
-            this.records = undefined;
-        }
-    }*/
     call(event)
     {
         this.cat=event.target.value;
@@ -67,15 +57,13 @@ export default class displayItemsScreen extends NavigationMixin(LightningElement
     } 
     generateBill()
     {
-        //getCustomerTableStatusData({csn :this.id})  
-        getCustomerTableStatusData1({csn :this.id}) 
+        getCustomerTableStatusData1({csn :this.id})  
+        getCustomerTableStatusData({csn :this.id}) 
         .then(result=>{
             this.data=result;
             this.order=this.data.Id;
             alert(this.order);
             alert(this.data.Name);
-            alert(this.data.CCXR_Order_Status__c);
-            if(this.data.CCXR_Order_Status__c=='Completed'){
            this[NavigationMixin.Navigate]({
             type: "standard__component",
             attributes: {
@@ -86,11 +74,10 @@ export default class displayItemsScreen extends NavigationMixin(LightningElement
                 c__ordername:this.data.Name
             }
         });
-    }
+           
         })
       
        
        
 }
 }
-

@@ -10,7 +10,7 @@ export default class Displayingorderlineitems extends LightningElement {
   wiredCases(result)
   {
     this.wiredData = result;
-    this.data = result.data;
+   
     this.errors = result.error;
     
   }

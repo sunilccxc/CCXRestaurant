@@ -1,7 +1,7 @@
 import { LightningElement,api,track,wire } from 'lwc';
-import getAllAccountsas from '@salesforce/apex/customertable.getAllAccountsas';
-import status from '@salesforce/apex/customertable.setstatus';
-import getAccountNames from '@salesforce/apex/customertable.getAccountNames';
+import getAllAccountsas from '@salesforce/apex/CustomerTableController.getAllAccountsas';
+import status from '@salesforce/apex/CustomerTableController.setstatus';
+import getAccountNames from '@salesforce/apex/CustomerTableController.getAccountNames';
 export default class Cheforderscreen extends LightningElement {
     @api records;
     @api errors;

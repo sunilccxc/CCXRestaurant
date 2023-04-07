@@ -1,16 +1,16 @@
 import { LightningElement,track,wire,api } from 'lwc';
-import getItmList from '@salesforce/apex/EmployeeData.getItemList';
-import deleteRecordItm from '@salesforce/apex/EmployeeData.deleteItems';
+import getItmList from '@salesforce/apex/EmployeeDataController.getItemList';
+import deleteRecordItm from '@salesforce/apex/EmployeeDataController.deleteItems';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 //import BackgroundImg from '@salesforce/resourceUrl/logo2';
 import { NavigationMixin } from "lightning/navigation";
-
+import {refreshApex} from '@salesforce/apex';
 export default class CcrRS extends NavigationMixin(LightningElement ) {
    // imageUrl = BackgroundImg;
 
     @track error;
     @track  itmList;
-
+    @track i=0;
     @api upRecordIDs;
     @api imageURL;
     @api drecordId;
@@ -37,18 +37,14 @@ export default class CcrRS extends NavigationMixin(LightningElement ) {
         { id:'4',label: 'Item Description', fieldName: 'CCXR_Description__c' },
         { id:'5',label: 'Item Description', fieldName: 'CCXR_Price__c' }
        ];
-
-       @wire(getItmList)
-       WiredItems({
-            error,
-            data
-        }) {
-            if (data) {
-                this.itmList = data;
-            } else if(error) {
-                this.error = error;
-            }
-        }
+       @wire(getItmList,{ } )
+       wiredColumns(result)
+       {
+         this.wiredData = result;
+         this.itmList = result.data;
+         this.errors = result.error;
+       }
+      
        /* get getBackgroundImage(){
             return `background-image:url("${this.imageUrl}")`;
         }*/
@@ -66,6 +62,7 @@ export default class CcrRS extends NavigationMixin(LightningElement ) {
                             variant: 'success'
                         })
                     );
+                    return refreshApex(this.wiredData);
                 })
                 .catch(error => {
                     this.dispatchEvent(
@@ -92,6 +89,15 @@ export default class CcrRS extends NavigationMixin(LightningElement ) {
                      actionName: 'edit'
                  },
              });
-        }
-
+             this.i=0
+             
+         }
+         handleMouseOver() {
+             if(this.i >= 1)
+             {
+                 return refreshApex(this.wiredData);
+             }
+             this.i++;
+             console.log(this.i)
+         }
 }

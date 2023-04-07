@@ -1,6 +1,6 @@
 import { LightningElement,track,wire,api } from 'lwc';
-import getItmList from '@salesforce/apex/EmployeeData.getItemList';
-import deleteRecordItm from '@salesforce/apex/EmployeeData.deleteItems';
+import getItmList from '@salesforce/apex/EmployeeDataController.getItemList';
+import deleteRecordItm from '@salesforce/apex/EmployeeDataController.deleteItems';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 export default class CcrRS extends LightningElement {

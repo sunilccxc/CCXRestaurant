@@ -6,9 +6,6 @@
     <div class="slds-grid slds-gutters">
         <div class="slds-col">
           <span>
-
-            
-        
             <lightning-radio-group
                 label="Select an Option"
                 options={options}
@@ -26,13 +23,16 @@
 
             <lightning-record-view-form
               object-api-name="CCXR_Order__c"
-            record-id={order}>
+              record-id={order}>
 
     
              <h2 style=" font-size: xx-Medium ;text-align:center ">Net Total</h2>
             <lightning-output-field field-name={Nettotal} variant="label-hidden" style="text-align:Center"> </lightning-output-field> 
-
+           
             </lightning-record-view-form>
+            <lightning-input class="slds-p-right_large" style=" text-align:center " type="checkbox" label="Amount Paid" onchange={onchange} checked={amtpaid} >
+            </lightning-input>
+            
           </span>
         </div>
 
@@ -40,7 +40,7 @@
     </div>
     <br/>
     <template if:true={showUPI}>
-        <c-upipayment order={order}></c-upipayment>
+        <c-upipayment></c-upipayment>
     </template>
 
     <template if:true={showCredit}>

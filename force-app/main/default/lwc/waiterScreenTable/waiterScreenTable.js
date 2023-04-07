@@ -1,7 +1,7 @@
 import { LightningElement,api,track,wire } from 'lwc';
-import getAllAccountss from '@salesforce/apex/waiterScreen.getAllAccountss';
-import statuspick from '@salesforce/apex/waiterScreen.statuspick';
-import statusser from '@salesforce/apex/waiterScreen.statusser';
+import getAllAccountss from '@salesforce/apex/waiterScreenController.getAllAccountss';
+import statuspick from '@salesforce/apex/waiterScreenController.statuspick';
+import statusser from '@salesforce/apex/waiterScreenController.statusser';
 
 import { refreshApex } from '@salesforce/apex';
 

@@ -1,7 +1,7 @@
 import { LightningElement,api,track,wire } from 'lwc';
 
 
-import getCustomerTableStatus from '@salesforce/apex/CustomerTableStatus.getCustomerTableStatus';
+import getCustomerTableStatus from '@salesforce/apex/CustomerTableStatusController.getCustomerTableStatus';
 
 export default class allCustomerStatus extends LightningElement {
     @api records;

@@ -1,5 +1,5 @@
 import { LightningElement,track,wire } from 'lwc';
-import getItmList from '@salesforce/apex/EmployeeData.getItemList';
+import getItmList from '@salesforce/apex/EmployeeDataController.getItemList';
 
 export default class CcrRS2 extends LightningElement {
     @track error;

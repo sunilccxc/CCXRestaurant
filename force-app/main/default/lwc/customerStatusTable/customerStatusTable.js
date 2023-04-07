@@ -1,8 +1,8 @@
 import { LightningElement,api,track,wire } from 'lwc';
-import getAllAccountsas from '@salesforce/apex/customertable.getAllAccountsas';
-import status from '@salesforce/apex/customertable.setstatus';
-import statuss from '@salesforce/apex/customertable.tsetstatus';
-import getAccountNames from '@salesforce/apex/customertable.getAccountNames';
+import getAllTable from '@salesforce/apex/CustomerTableController.getAllTable';
+import status from '@salesforce/apex/CustomerTableController.setstatus';
+import statuss from '@salesforce/apex/CustomerTableController.tsetstatus';
+import getTableRecords from '@salesforce/apex/CustomerTableController.getTableRecords';
 import {refreshApex} from '@salesforce/apex';
 export default class CustomerStatusTable extends LightningElement {
     @api records;
@@ -13,14 +13,14 @@ export default class CustomerStatusTable extends LightningElement {
     @api recordid;
     @track i=0;
     accountOptions = [];
-    @wire(getAllAccountsas,{ } )
+    @wire(getAllTable,{ } )
     wiredCases(result)
     {
       this.wiredData = result;
       this.records = result.data;
       this.errors = result.error;
     }
-    @wire(getAccountNames,{ } )
+    @wire(getTableRecords,{ } )
     wirednames(result1)
     {
       this.wiredData1 = result1;
@@ -75,7 +75,7 @@ export default class CustomerStatusTable extends LightningElement {
         return;
       }
     
-      getAccountNames()
+      getTableRecords()
      
         .then(result => {
           this.accountOptions = result.map(account => ({
